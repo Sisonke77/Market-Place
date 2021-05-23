@@ -30,7 +30,7 @@ function getChange (payable, paid) {
 };
 
 function passwordsEqual (x,y) {
-  return x + y;
+  return x+y;
 };
 
 // function helloWorld(){
@@ -42,5 +42,5 @@ function passwordsEqual (x,y) {
    re-useability of JS code in both Back-end and Front-end! #isomorphic */
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
-   module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
+   module.exports = add;  // allows CommonJS/Node.js require()
 }
