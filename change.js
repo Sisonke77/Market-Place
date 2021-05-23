@@ -28,9 +28,9 @@ function getChange (payable, paid) {
   return change;
 };
 
-// function helloWorld(){
-//   return "Hello world"
-// }
+function helloWorld(){
+  return "Hello world"
+}
 
 
 /* The code block below ONLY Applies to Node.js - This Demonstrates
