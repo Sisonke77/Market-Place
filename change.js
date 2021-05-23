@@ -29,7 +29,7 @@ function getChange (payable, paid) {
   return true;
 };
 
-function passwordsEqual (x,y) {
+function add (x,y) {
   return x+y;
 };
 
