@@ -29,7 +29,7 @@ var coins = [200, 100, 50, 20, 10, 5, 2, 1];
 // };
 
 function helloWorld(){
-  return "Hello world"
+  return 1
 }
 
 

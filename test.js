@@ -35,7 +35,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 
 test('helloWorld() should return ""Hello world', function(assert) {
   var result = helloWorld();
-  var expected = "Hello world";
+  var expected = 1
   assert.deepEqual(result, expected);
 });
 
