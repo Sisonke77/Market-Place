@@ -11,6 +11,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
+
 function login(){
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
