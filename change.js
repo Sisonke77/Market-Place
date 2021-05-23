@@ -8,7 +8,7 @@ var coins = [200, 100, 50, 20, 10, 5, 2, 1];
  * @example
  * getChange(215, 300); // returns [50, 20, 10, 5]
  */
-function passwordsEqual (payable, paid) {
+function passwordsEqual (password1, password2) {
   // var change = [];
   // var length = coins.length;
   // var remaining = paid - payable; // we reduce this below
@@ -26,7 +26,7 @@ function passwordsEqual (payable, paid) {
   //   }
   // }
   // return change;
-  return payable + paid;
+  return password1 == password2;
 };
 
 // function helloWorld(){

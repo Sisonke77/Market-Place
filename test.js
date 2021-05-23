@@ -31,8 +31,8 @@ test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', functio
   // var result = getChange(12, 400);
   // var expected = [200, 100, 50, 20, 10, 5, 2, 1];
   // assert.deepEqual(result, expected);
-  var result = passwordsEqual(12, 400);
-  var expected = 412;
+  var result = passwordsEqual(12, 12);
+  var expected = true;
   assert.deepEqual(result, expected);
 });
 
