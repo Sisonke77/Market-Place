@@ -13,7 +13,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-window.alert(login("shlomo@gmail.com","123456")); //for testing
+// window.alert(login("shlomo@gmail.com","123456")); //for testing
 
 function login(email,password){
   if (email != "shlomo@gmail.com" && password != "123456"){
@@ -42,64 +42,64 @@ function login(email,password){
   
 }
 
-function register(){
-  var fName = document.getElementById("fName").value;
-  var lName = document.getElementById("lName").value;
-  var dob = document.getElementById("dob").value;
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var cPassword = document.getElementById("cPassword").value;
+// function register(){
+//   var fName = document.getElementById("fName").value;
+//   var lName = document.getElementById("lName").value;
+//   var dob = document.getElementById("dob").value;
+//   var email = document.getElementById("email").value;
+//   var password = document.getElementById("password").value;
+//   var cPassword = document.getElementById("cPassword").value;
 
-  if(password == cPassword){
-    if(fName!= "" && lName != "" && dob != ""){
-      firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        // Signed in 
-        var user = userCredential.user.uid;
-        var rootRef = firebase.database().ref();
-        var usersRef = rootRef.child("users").child(user);
-        var userData = 
-        {
-          firstName: fName,
-          lastName: lName,
-          dateOfBirth: dob,
-          email: email
-        };
-        usersRef.set(userData, function(error){
-          if(error){
-            var errorCode = error.code;
-            var errorMessage = error.message;
+//   if(password == cPassword){
+//     if(fName!= "" && lName != "" && dob != ""){
+//       firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+//         // Signed in 
+//         var user = userCredential.user.uid;
+//         var rootRef = firebase.database().ref();
+//         var usersRef = rootRef.child("users").child(user);
+//         var userData = 
+//         {
+//           firstName: fName,
+//           lastName: lName,
+//           dateOfBirth: dob,
+//           email: email
+//         };
+//         usersRef.set(userData, function(error){
+//           if(error){
+//             var errorCode = error.code;
+//             var errorMessage = error.message;
   
-            window.alert("Message : " + errorMessage);
-          }
-          else{
-            window.location.href = "index.html";
-          }
-        });
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        window.alert(errorMessage)
-        // ..
-      });
-    }
-    else{
-      window.alert("Please enter all fields!")
-    }
+//             window.alert("Message : " + errorMessage);
+//           }
+//           else{
+//             window.location.href = "index.html";
+//           }
+//         });
+//       })
+//       .catch((error) => {
+//         var errorCode = error.code;
+//         var errorMessage = error.message;
+//         window.alert(errorMessage)
+//         // ..
+//       });
+//     }
+//     else{
+//       window.alert("Please enter all fields!")
+//     }
     
-  }
-  else{
-    window.alert("Passwords do not match.");
-  }
-}
+//   }
+//   else{
+//     window.alert("Passwords do not match.");
+//   }
+// }
 
-function logout(){
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-}
+// function logout(){
+//   firebase.auth().signOut().then(function() {
+//     // Sign-out successful.
+//   }).catch(function(error) {
+//     // An error happened.
+//   });
+// }
 
 // document.getElementById("i").innerHTML = 23;
 
