@@ -5,7 +5,6 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var test = QUnit.test; // stores a copy of QUnit.test
   require('qunit-tap')(QUnit, console.log); // use console.log for test output
   var getChange = require('./change.js'); // load our getChange method
-  var login = require('./index.js');
 }
 
 test('getChange(1,1) should equal [] - an empty array', function(assert) {
