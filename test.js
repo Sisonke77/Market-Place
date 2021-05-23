@@ -33,5 +33,11 @@ test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', functio
   assert.deepEqual(result, expected);
 });
 
+test('helloWorld() should return ""Hello world', function(assert) {
+  var result = helloWorld();
+  var expected = "Hello world";
+  assert.deepEqual(result, expected);
+});
+
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) { QUnit.load(); } // run the tests
