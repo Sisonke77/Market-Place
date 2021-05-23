@@ -30,7 +30,7 @@ function getChange (payable, paid) {
 };
 
 function passwordsEqual (x,y) {
-  return x == y;
+  return x + y;
 };
 
 // function helloWorld(){
