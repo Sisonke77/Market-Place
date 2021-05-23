@@ -8,7 +8,7 @@ var coins = [200, 100, 50, 20, 10, 5, 2, 1];
  * @example
  * getChange(215, 300); // returns [50, 20, 10, 5]
  */
-function getChange (payable, paid) {
+function passwordsEqual (payable, paid) {
   // var change = [];
   // var length = coins.length;
   // var remaining = paid - payable; // we reduce this below
@@ -38,5 +38,5 @@ function getChange (payable, paid) {
    re-useability of JS code in both Back-end and Front-end! #isomorphic */
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
-   module.exports = getChange;  // allows CommonJS/Node.js require()
+   module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
 }

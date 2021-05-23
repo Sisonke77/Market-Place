@@ -4,7 +4,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   // alias the QUnit.test method so we don't have to change all our tests
   var test = QUnit.test; // stores a copy of QUnit.test
   require('qunit-tap')(QUnit, console.log); // use console.log for test output
-  var getChange = require('./change.js'); // load our getChange method
+  var passwordsEqual = require('./change.js'); // load our getChange method
   
 }
 
@@ -31,7 +31,7 @@ test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', functio
   // var result = getChange(12, 400);
   // var expected = [200, 100, 50, 20, 10, 5, 2, 1];
   // assert.deepEqual(result, expected);
-  var result = getChange(12, 400);
+  var result = passwordsEqual(12, 400);
   var expected = 412;
   assert.deepEqual(result, expected);
 });
