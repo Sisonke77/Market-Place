@@ -92,5 +92,6 @@ function logout(){
 
 // Code Coverage Testing
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = login;  // Login
+  module.exports = logout;  // Login
 }
+
