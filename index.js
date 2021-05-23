@@ -1,46 +1,46 @@
-var firebaseConfig = {
-   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
-   authDomain: "witsmarketproject.firebaseapp.com",
-   databaseURL: "https://witsmarketproject-default-rtdb.firebaseio.com",
-   projectId: "witsmarketproject",
-   storageBucket: "witsmarketproject.appspot.com",
-   messagingSenderId: "650642470600",
-   appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
-   measurementId: "G-EHXK572PE1"
- };
 
- // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.auth.Auth.Persistence.LOCAL;
+var firebaseConfig = {
+  apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
+  authDomain: "witsmarketproject.firebaseapp.com",
+  databaseURL: "https://witsmarketproject-default-rtdb.firebaseio.com",
+  projectId: "witsmarketproject",
+  storageBucket: "witsmarketproject.appspot.com",
+  messagingSenderId: "650642470600",
+  appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
+  measurementId: "G-EHXK572PE1"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.auth.Auth.Persistence.LOCAL;
 
 // window.alert(login("shlomo@gmail.com","123456")); //for testing
 
-// function login(email,password){
-//   if (email != "shlomo@gmail.com" && password != "123456"){
-//       email = document.getElementById("email").value;
-//       password = document.getElementById("password").value;
-//   }  
+function login(email,password){
+  if (email != "shlomo@gmail.com" && password != "123456"){
+      email = document.getElementById("email").value;
+      password = document.getElementById("password").value;
+  }  
 
-//   var page = window.location.href;
-//   firebase.auth().signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     //window.alert(user.uid);
-//     window.location.href = "index.html";
-//   })
-//   .catch((error) => {
-//     var errorMessage = error.message;
-//        window.alert(errorMessage)
-//   });
+  var page = window.location.href;
+  firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    //window.alert(user.uid);
+    window.location.href = "index.html";
+  })
+  .catch((error) => {
+    var errorMessage = error.message;
+       window.alert(errorMessage)
+  });
 
-//   if (window.location.href != page){
-//     return "Success"; 
-//   }else{
-//     return "Fail"
-//   }
+  if (window.location.href != page){
+    return "Success"; 
+  }else{
+    return "Fail"
+  }
   
-// }
+}
 
 function register(){
   var fName = document.getElementById("fName").value;
@@ -100,7 +100,14 @@ function logout(){
     // An error happened.
   });
 }
- 
+
+// document.getElementById("i").innerHTML = 23;
+
+// Code Coverage Testing
+// if (typeof module !== 'undefined' && module.exports) {
+//   module.exports = login;  // Login
+// }
+
 
 /**
  * getChange accepts two parameters (totalPayable and cashPaid) and calculates
@@ -111,7 +118,7 @@ function logout(){
  * @example
  * getChange(215, 300); // returns [50, 20, 10, 5]
  */
-function passwordsEqual (password1, password2) {
+ function passwordsEqual (password1, password2) {
   return password1 == password2;
 };
 
