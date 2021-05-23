@@ -28,8 +28,11 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 // });
 
 test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(assert) {
+  // var result = getChange(12, 400);
+  // var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+  // assert.deepEqual(result, expected);
   var result = getChange(12, 400);
-  var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+  var expected = true;
   assert.deepEqual(result, expected);
 });
 
