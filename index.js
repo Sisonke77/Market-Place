@@ -9,6 +9,10 @@ var firebaseConfig = {
    measurementId: "G-EHXK572PE1"
  };
 
+ // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.auth.Auth.Persistence.LOCAL;
+
 /**
  * getChange accepts two parameters (totalPayable and cashPaid) and calculates
  * the change in "coins" that needs to be returned.
