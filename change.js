@@ -8,10 +8,7 @@ var firebaseConfig = {
    appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
    measurementId: "G-EHXK572PE1"
  };
-
- // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.auth.Auth.Persistence.LOCAL;
+ 
 
 /**
  * getChange accepts two parameters (totalPayable and cashPaid) and calculates
