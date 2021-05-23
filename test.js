@@ -27,12 +27,21 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 //   assert.deepEqual(result, expected);
 // });
 
-test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(assert) {
+test('passwordsEqual(12, 12) should return true', function(assert) {
   // var result = getChange(12, 400);
   // var expected = [200, 100, 50, 20, 10, 5, 2, 1];
   // assert.deepEqual(result, expected);
   var result = passwordsEqual(12, 12);
   var expected = true;
+  assert.deepEqual(result, expected);
+});
+
+test('passwordsEqual(12, 4) should return false', function(assert) {
+  // var result = getChange(12, 400);
+  // var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+  // assert.deepEqual(result, expected);
+  var result = passwordsEqual(12, 4);
+  var expected = false;
   assert.deepEqual(result, expected);
 });
 
