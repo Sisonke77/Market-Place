@@ -26,7 +26,7 @@ function getChange (payable, paid) {
   //   }
   // }
   // return change;
-  return 2;
+  return payable;
 };
 
 // function helloWorld(){
