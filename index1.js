@@ -15,32 +15,32 @@ firebase.auth.Auth.Persistence.LOCAL;
 
 // window.alert(login("shlomo@gmail.com","123456")); //for testing
 
-function login(email,password){
-  if (email != "shlomo@gmail.com" && password != "123456"){
-      email = document.getElementById("email").value;
-      password = document.getElementById("password").value;
-  }  
+// function login(email,password){
+//   if (email != "shlomo@gmail.com" && password != "123456"){
+//       email = document.getElementById("email").value;
+//       password = document.getElementById("password").value;
+//   }  
 
-  var page = window.location.href;
-  firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    //window.alert(user.uid);
-    window.location.href = "index.html";
-  })
-  .catch((error) => {
-    var errorMessage = error.message;
-       window.alert(errorMessage)
-  });
+//   var page = window.location.href;
+//   firebase.auth().signInWithEmailAndPassword(email, password)
+//   .then((userCredential) => {
+//     // Signed in
+//     var user = userCredential.user;
+//     //window.alert(user.uid);
+//     window.location.href = "index.html";
+//   })
+//   .catch((error) => {
+//     var errorMessage = error.message;
+//        window.alert(errorMessage)
+//   });
 
-  if (window.location.href != page){
-    return "Success"; 
-  }else{
-    return "Fail"
-  }
+//   if (window.location.href != page){
+//     return "Success"; 
+//   }else{
+//     return "Fail"
+//   }
   
-}
+// }
 
 // function register(){
 //   var fName = document.getElementById("fName").value;
