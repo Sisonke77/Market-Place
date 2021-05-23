@@ -29,9 +29,9 @@ function getChange (payable, paid) {
   return true;
 };
 
-function add (x,y) {
-  return x+y;
-};
+// function add (x,y) {
+//   return x+y;
+// };
 
 // function helloWorld(){
 //   return 1
@@ -42,5 +42,5 @@ function add (x,y) {
    re-useability of JS code in both Back-end and Front-end! #isomorphic */
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
-   module.exports = add;  // allows CommonJS/Node.js require()
+   module.exports = getChange;  // allows CommonJS/Node.js require()
 }
