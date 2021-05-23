@@ -38,5 +38,4 @@ function helloWorld(){
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
    module.exports = getChange;  // allows CommonJS/Node.js require()
-  
 }
