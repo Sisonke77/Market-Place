@@ -13,10 +13,15 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-function login(){
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
+window.alert(login("shlomo@gmail.com","123456")); //for testing
 
+function login(email,password){
+  if (email != "shlomo@gmail.com" && password != "123456"){
+      email = document.getElementById("email").value;
+      password = document.getElementById("password").value;
+  }  
+
+  var page = window.location.href;
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in
@@ -26,8 +31,15 @@ function login(){
   })
   .catch((error) => {
     var errorMessage = error.message;
-    window.alert(errorMessage)
+       window.alert(errorMessage)
   });
+
+  if (window.location.href != page){
+    return "Success"; 
+  }else{
+    return "Fail"
+  }
+  
 }
 
 function register(){
