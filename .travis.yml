@@ -5,3 +5,7 @@ before_install:
   - pip install --user codecov
 after_success:
   - codecov --file coverage/lcov.info --disable search
+fixes:
+  - "before/::after/"  # move path   e.g., "before/path" => "after/path"
+  - "::after/"         # move root   e.g., "path/" => "after/path/"
+  - "before/::"        # reduce root e.g., "before/path/" => "path/"
