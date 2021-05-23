@@ -29,10 +29,6 @@ function getChange (payable, paid) {
   return true;
 };
 
-// function add (x,y) {
-//   return x+y;
-// };
-
 // function helloWorld(){
 //   return 1
 // }
