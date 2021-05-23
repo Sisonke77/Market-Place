@@ -93,6 +93,6 @@ function logout(){
 
 // Code Coverage Testing
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = logout;  // Login
+  module.exports = login;  // Login
 }
 
