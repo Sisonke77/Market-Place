@@ -115,7 +115,6 @@ var firebaseConfig = {
  */
 function passwordsEqual (password1, password2) {
   return password1 == password2;
-
 };
 
 /* The code block below ONLY Applies to Node.js - This Demonstrates
