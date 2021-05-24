@@ -7,4 +7,5 @@ after_success:
   - codecov --file coverage/lcov.info --disable search
 codecov:
   token: 032f59ee-4fcd-47e6-8b22-47930fe3e7f2
+  cat codecov.yml | curl --data-binary @- https://codecov.io/validate
  
