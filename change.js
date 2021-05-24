@@ -1,13 +1,13 @@
-var firebaseConfig = {
-   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
-   authDomain: "witsmarketproject.firebaseapp.com",
-   databaseURL: "https://witsmarketproject-default-rtdb.firebaseio.com",
-   projectId: "witsmarketproject",
-   storageBucket: "witsmarketproject.appspot.com",
-   messagingSenderId: "650642470600",
-   appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
-   measurementId: "G-EHXK572PE1"
- };
+// var firebaseConfig = {
+//    apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
+//    authDomain: "witsmarketproject.firebaseapp.com",
+//    databaseURL: "https://witsmarketproject-default-rtdb.firebaseio.com",
+//    projectId: "witsmarketproject",
+//    storageBucket: "witsmarketproject.appspot.com",
+//    messagingSenderId: "650642470600",
+//    appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
+//    measurementId: "G-EHXK572PE1"
+//  };
 
 // Initialize Firebase
 // firebase.initializeApp(firebaseConfig);
