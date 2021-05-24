@@ -9,9 +9,9 @@ var firebaseConfig = {
    measurementId: "G-EHXK572PE1"
  };
 
- // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.auth.Auth.Persistence.LOCAL;
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.auth.Auth.Persistence.LOCAL;
 
 // window.alert(login("shlomo@gmail.com","123456")); //for testing
 
@@ -113,7 +113,7 @@ var firebaseConfig = {
  */
 function passwordsEqual (password1, password2) {
   return password1 == password2;
-  
+
 };
 
 /* The code block below ONLY Applies to Node.js - This Demonstrates
