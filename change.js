@@ -7,6 +7,7 @@
  * @example
  * getChange(215, 300); // returns [50, 20, 10, 5]
  */
+
 function passwordsEqual (password1, password2) {
   return password1 == password2;
 };
@@ -17,3 +18,5 @@ function passwordsEqual (password1, password2) {
 if (typeof module !== 'undefined' && module.exports) {
    module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
 }
+
+

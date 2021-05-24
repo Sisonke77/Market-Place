@@ -4,7 +4,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var test = QUnit.test; // stores a copy of QUnit.test
   require('qunit-tap')(QUnit, console.log); // use console.log for test output
   var passwordsEqual = require('./change.js'); // load our passwordsEqual method   
-  //var passwordsEqual = require('./index.js');
+  var passwordsEqual = require('./index.js');
 }
 
 //Login user story
