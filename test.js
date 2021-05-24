@@ -11,7 +11,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 test('passwordsEqual(12, 12) should return true', function(assert) {
   var result = successfulLogin(12, 12);
   var expected = true;
-  assert.deepEqual(result, expected);
+  assert.deepEqual(result, true);
 });
 
 // test('passwordsEqual(12, 4) should return false', function(assert) {
