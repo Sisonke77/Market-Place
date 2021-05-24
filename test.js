@@ -8,11 +8,11 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 }
 
 //Login user story
-test('passwordsEqual(12, 12) should return true', function(assert) {
-  var result = successfulLogin(12, 12);
-  var expected = true;
-  assert.deepEqual(result, expected);
-});
+// test('passwordsEqual(12, 12) should return true', function(assert) {
+//   var result = successfulLogin(12, 12);
+//   var expected = true;
+//   assert.deepEqual(result, expected);
+// });
 
 //passwords matching
  test('passwordsEqual(12, 12) should return true', function(assert) {
