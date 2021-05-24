@@ -19,5 +19,4 @@ test('passwordsEqual(12, 4) should return false', function(assert) {
   assert.deepEqual(result, expected);
 });
 
-
 if (typeof module !== 'undefined' && module.exports) { QUnit.load(); } // run the tests

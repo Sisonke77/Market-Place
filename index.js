@@ -86,7 +86,7 @@ function register(){
     else{
       window.alert("Please enter all fields!")
     }
-    
+  
   }
   else{
     window.alert("Passwords do not match.");
