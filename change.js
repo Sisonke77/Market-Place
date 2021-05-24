@@ -13,6 +13,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
+
 // window.alert(login("shlomo@gmail.com","123456")); //for testing
 
 // function login(email,password){
