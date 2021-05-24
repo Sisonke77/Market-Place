@@ -10,8 +10,8 @@ var firebaseConfig = {
  };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.auth.Auth.Persistence.LOCAL;
+// firebase.initializeApp(firebaseConfig);
+// firebase.auth.Auth.Persistence.LOCAL;
 
 
 
