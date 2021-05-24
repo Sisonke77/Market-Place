@@ -1,4 +1,3 @@
-
 var firebaseConfig = {
   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
   authDomain: "witsmarketproject.firebaseapp.com",
