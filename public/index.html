@@ -297,9 +297,6 @@
                 container.append(prodcutCategoryH);
 
                 var j = 0;
-
-                //just for meantime
-                var k = -1;
                 for(var prodcutId in category[categoryName]){
                   if(j>=3){
                     break;
@@ -328,12 +325,7 @@
                   let img = document.createElement("img");
                   var storageRef = firebase.storage().ref(); 
 
-                  //just for meantime
-                  k++;
-                  if( k==3){
-                      k=0;
-                  }
-                  var idN = "/id" + k;
+                  var idN = "/id" + j;
                   
                   // storageRef.child('productCategory/'+categoryValue+'/id0'+ "/image0" + '.jpg').getDownloadURL().then(function(url) {
                   storageRef.child('productCategory/'+categoryValue+ idN+ "/image0" + '.jpg').getDownloadURL().then(function(url) {
@@ -360,7 +352,7 @@
                   let aAdd = document.createElement("button");
                   aAdd.className = "add_cart_btn";
                   aAdd.textContent = "Add To Cart";
-                  aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+k+")");
+                  aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+j+")");
 
 
                   // let spanAddCart = document.createElement("span");
@@ -439,7 +431,7 @@
                   }
                   // aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+k+")");
 
-                  btnModalAdd.setAttribute("onclick", "cartToFirebase("+categoryId+k+")");
+                  btnModalAdd.setAttribute("onclick", "cartToFirebase("+categoryId+j+")");
 
                   divModalB.append(image);
                   divModalB.append(pPrice);
