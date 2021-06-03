@@ -203,14 +203,15 @@
           });
           checkoutOpen();
 
-          dbRef.child("users").child(user.uid).child("cart").child("totalCartPrice").once("value", function(cartData) {
-            var cart_total = "R"+cartData.val();  
-            document.getElementById("totalPrice").innerHTML = cart_total;
+          // dbRef.child("users").child(user.uid).child("cart").child("totalCartPrice").once("value", function(cartData) {
+          //   var cart_total = "R"+cartData.val();  
+            
+          //   document.getElementById("totalPrice").innerHTML = cart_total;
 
-            // document.getElementById("totalPrice").innerHTML = cart_total;
-            // cart_total = "R500";
-            // document.getElementById("totalPrice").innerHTML = cart_total;
-          });          
+          //   // document.getElementById("totalPrice").innerHTML = cart_total;
+          //   // cart_total = "R500";
+          //   // document.getElementById("totalPrice").innerHTML = cart_total;
+          // });          
         }
       });
   </script>

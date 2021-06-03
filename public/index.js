@@ -152,6 +152,7 @@ function checkout(){
 
 function checkoutOpen(){
   //update price
+  // var totalCartPrice = 0;
   firebase.auth().onAuthStateChanged(function(user){
     var userUid = user.uid;
     const dbRef = firebase.database().ref();
@@ -159,7 +160,7 @@ function checkoutOpen(){
       dbRef.child("users").child(userUid).child("cart").once("value", function(data) {
         var cartObject = data.val();  //all prodcuts object
 
-        var totalCartPrice = 0;
+        // var totalCartPrice = 0;
         for(var categoryId in cartObject){
           var category = cartObject[categoryId].category;
           var productId = cartObject[categoryId].productId
@@ -169,14 +170,45 @@ function checkoutOpen(){
 
             var price = data.val().price;
             dbRef.child("users").child(userUid).child("cart").child(categoryId).child("totalPrice").set(price*quantity);
-            totalCartPrice += price*quantity;
-            dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
+            // totalCartPrice += price*quantity;
+            // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
           });
         }
         // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
       });
     });
   });
+
+  firebase.auth().onAuthStateChanged(function(user){
+    var userUid = user.uid; 
+    const dbRef = firebase.database().ref();
+    dbRef.on('value', function(datasnapshot){
+      var cartObject;
+      dbRef.child("users").child(userUid).child("cart").once("value", function(data) {
+        cartObject = data.val();  //all prodcuts object
+      });
+      var totalCartPrice = 0;
+      // var count = 0;
+      for(var categoryId in cartObject){
+        if (categoryId != "totalCartPrice"){
+          totalCartPrice += cartObject[categoryId].totalPrice;
+          // count ++;
+          // window.alert(totalCartPrice + " " + count);
+        }
+      }
+      // window.alert(totalCartPrice);
+      dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
+      document.getElementById("totalPrice").innerHTML = "R"+totalCartPrice;
+    });
+  });
+
+
+  // firebase.auth().onAuthStateChanged(function(user){
+  //   var userUid = user.uid;
+  //   const dbRef = firebase.database().ref();
+  //   // window.alert(totalCartPrice);
+  //   dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
+  // });
 
   // var totalCartPrice = 0;
 
@@ -208,6 +240,22 @@ function checkoutOpen(){
       });
     });
   });
+
+  // firebase.auth().onAuthStateChanged(function(user){
+  //   var userUid = user.uid;
+  //   const dbRef = firebase.database().ref();
+  //   window.alert(2)
+
+  //   dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").once("value", function(cartData) {
+  //     var cart_total = "R"+cartData.val();  
+      
+  //     document.getElementById("totalPrice").innerHTML = cart_total;
+
+  //     // document.getElementById("totalPrice").innerHTML = cart_total;
+  //     // cart_total = "R500";
+  //     // document.getElementById("totalPrice").innerHTML = cart_total;
+  //   });  
+  // });
 }
 
   
