@@ -259,7 +259,7 @@
             // var categories = ["Technology", "Clothes", "Games", "Sports", "Food"]
             // for(var i =0; i <5; i++){
             //   for(var j =0; j<15; j++){
-            //     writeToFirebase(categories[i], "id"+j, "product "+j, "1000", "descrption "+j, 100000, "image"+j)
+            //     writeToFirebase(categories[i], "id"+j, "product "+j, "500", "descrption "+j, 100000, "image"+j)
             //   }
             // }
             
@@ -413,7 +413,7 @@
                   image.height="300";
 
                   let pPrice = document.createElement("p");
-                  pPrice.textContent = "Price: "+priceValue;
+                  pPrice.textContent = "Price: "+ "R" + priceValue;
 
                   let pDescription = document.createElement("p");
                   pDescription.textContent = "Descriptiom: "+descriptionValue;
@@ -485,7 +485,7 @@
                   let h5Span = document.createElement("h5");
                   
                   let spanAmount = document.createElement("span");
-                  spanAmount.textContent = priceValue;
+                  spanAmount.textContent = "R" + priceValue;
 
                   h5Span.append(spanAmount);
 
