@@ -143,9 +143,6 @@ function removeProduct(userUidAndCartId){ //seperated by #
 }
 
 function updateQuantity(userUidAndCartId){ //seperated by #
-
-  // const quantityInput = document.getElementById(cartId).value;
-  
   var arr =  userUidAndCartId.split("#");
   var userUid  = arr[0];
   var categoryProductId = arr[1];
@@ -165,7 +162,6 @@ function checkout(){
 
 function checkoutOpen(){
   //update price
-  // var totalCartPrice = 0;
   firebase.auth().onAuthStateChanged(function(user){
     var userUid = user.uid;
     const dbRef = firebase.database().ref();
@@ -173,21 +169,16 @@ function checkoutOpen(){
       dbRef.child("users").child(userUid).child("cart").once("value", function(data) {
         var cartObject = data.val();  //all prodcuts object
 
-        // var totalCartPrice = 0;
         for(var categoryId in cartObject){
           var category = cartObject[categoryId].category;
           var productId = cartObject[categoryId].productId
           var quantity = cartObject[categoryId].quantity;
           
           dbRef.child("prodcutCategory").child(category).child(productId).once("value", function(data) {
-
             var price = data.val().price;
             dbRef.child("users").child(userUid).child("cart").child(categoryId).child("totalPrice").set(price*quantity);
-            // totalCartPrice += price*quantity;
-            // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
           });
         }
-        // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
       });
     });
   });
@@ -214,61 +205,39 @@ function checkoutOpen(){
       document.getElementById("totalPrice").innerHTML = "R"+totalCartPrice;
     });
   });
+}
 
+//called when Confirm Your Order is clicked on
+function confirmYourOrder(){
+  firebase.auth().onAuthStateChanged(function(user){
+    var difference;
+    var userUid = user.uid;
+    const dbRef = firebase.database().ref();
+    dbRef.child("users").child(userUid).once("value", function(data) {
+      var userObject = data.val();  //all prodcuts object
+      var available_money = userObject["details"].availableMoney;
+      var total_cart_price = userObject["cart"].totalCartPrice;
+      difference = available_money - total_cart_price;
+      if (difference >= 0){
+        updateInFirebase(difference);
+        window.alert("Your Order Is Confirmed!");
+        window.location.href = "index.html";
+      }
+      else { // if user does not have enough funds to complete order
+        window.alert("You do not have enough funds to complete this order");
+      }
+    });
+  });
+}
 
-  // firebase.auth().onAuthStateChanged(function(user){
-  //   var userUid = user.uid;
-  //   const dbRef = firebase.database().ref();
-  //   // window.alert(totalCartPrice);
-  //   dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
-  // });
-
-  // var totalCartPrice = 0;
-
-  // get total price
+function updateInFirebase(difference){
   firebase.auth().onAuthStateChanged(function(user){
     var userUid = user.uid;
     const dbRef = firebase.database().ref();
     dbRef.on('value', function(datasnapshot){
-      dbRef.child("users").child(userUid).child("cart").once("value", function(data) {
-        var cartObject = data.val();  //all prodcuts object
-        var count = Object.keys(cartObject).length;
-        for(var categoryId in cartObject){
-
-          dbRef.child("users").child(userUid).child("cart").child(categoryId).once("value", function(data) {
-            var index = Object.keys(cartObject).indexOf(categoryId);
-            // window.alert(totalCartPrice);
-
-            // totalCartPrice += data.val().totalPrice;
-
-            // if(count-index == 1){ //last in
-            //   // window.alert(totalCartPrice);
-            //   dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
-            //   window.alert(1232)
-
-            // }
-          });
-        }
-        // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
-      });
+      dbRef.child("users").child(userUid).child("details").child("availableMoney").set(difference);
     });
   });
-
-  // firebase.auth().onAuthStateChanged(function(user){
-  //   var userUid = user.uid;
-  //   const dbRef = firebase.database().ref();
-  //   window.alert(2)
-
-  //   dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").once("value", function(cartData) {
-  //     var cart_total = "R"+cartData.val();  
-      
-  //     document.getElementById("totalPrice").innerHTML = cart_total;
-
-  //     // document.getElementById("totalPrice").innerHTML = cart_total;
-  //     // cart_total = "R500";
-  //     // document.getElementById("totalPrice").innerHTML = cart_total;
-  //   });  
-  // });
 }
 
 function init(){
