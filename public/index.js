@@ -33,6 +33,7 @@ function login(){
 
 
 function register(fName, lName, dob, email, password, cPassword){
+  
   // var fName = document.getElementById("fName").value;
   // var lName = document.getElementById("lName").value;
   // var dob = document.getElementById("dob").value;
