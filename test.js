@@ -3,16 +3,9 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   // alias the QUnit.test method so we don't have to change all our tests
   var test = QUnit.test; // stores a copy of QUnit.test
   require('qunit-tap')(QUnit, console.log); // use console.log for test output
-  var passwordsEqual = require('./public/temp.js'); // load our passwordsEqual method   
+  var passwordsEqual = require('./public/index.js'); // load our passwordsEqual method   
   // var passwordsEqual = require('./index.js');
 }
-
-//Login user story
-// test('passwordsEqual(12, 12) should return true', function(assert) {
-//   var result = successfulLogin(12, 12);
-//   var expected = true;
-//   assert.deepEqual(result, expected);
-// });
 
 //passwords matching
  test('passwordsEqual(12, 12) should return true', function(assert) {
