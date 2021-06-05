@@ -33,7 +33,7 @@ function login(){
 
 
 function register(fName, lName, dob, email, password, cPassword){
-  
+
   // var fName = document.getElementById("fName").value;
   // var lName = document.getElementById("lName").value;
   // var dob = document.getElementById("dob").value;
@@ -62,7 +62,7 @@ function register(fName, lName, dob, email, password, cPassword){
             var errorCode = error.code;
             var errorMessage = error.message;
   
-            window.alert("Message : " + errorMessage);
+            // window.alert("Message : " + errorMessage);
           }
           else{
             window.location.href = "index.html";
@@ -72,16 +72,16 @@ function register(fName, lName, dob, email, password, cPassword){
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        window.alert(errorMessage)
+        // window.alert(errorMessage)
         // ..
       });
     }
     else{
-      window.alert("Passwords do not match.");
+      // window.alert("Passwords do not match.");
     }
   }
   else{
-    window.alert("Passwords do not match.");
+    // window.alert("Passwords do not match.");
   }
   returnMesage = "Shlomo";
   return returnMesage;
