@@ -46,7 +46,10 @@
                 <input placeholder="e.g: abcdef" type="password" name="password" id="password"><br>
                 <label for="cPassword">Confirm Password:</label><br>
                 <input placeholder="e.g: abcdef" type="password" name="cPassword" id="cPassword"><br>
-                <button type="button" class="btn waves-effect waves-light" onclick="register()">Register</button><br>
+                <button type="button" class="btn waves-effect waves-light" 
+                onclick="register(document.getElementById('fName').value, document.getElementById('lName').value,
+                document.getElementById('dob').value, document.getElementById('email').value, 
+                document.getElementById('password').value, document.getElementById('cPassword').value)">Register</button><br>
                 <a href="signin.html">Already have an account?</a>
             </form>
         </main>
