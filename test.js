@@ -15,11 +15,11 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 //   assert.deepEqual(result, expected);
 // });
 
-// test('passwordsEqual(12, 4) should return false', function(assert) {
-//   var result = passwordsEqual(12, 4);
-//   var expected = false;
-//   assert.deepEqual(result, expected);
-// });
+test('passwordsEqual(12, 4) should return false', function(assert) {
+  var result = passwordsEqual(12, 4);
+  var expected = false;
+  assert.deepEqual(result, expected);
+});
 
 // test('isFieldEmpty()', function(assert){
 //   var result = isAnyFieldEmpty("","","","","","");
