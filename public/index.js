@@ -75,6 +75,7 @@ function register(fName, lName, dob, email, password, cPassword){
         // window.alert(errorMessage)
         // ..
       });
+      return "tempSucess";
     }
     else{
       returnMesage = "Please ensure all fields are filled";

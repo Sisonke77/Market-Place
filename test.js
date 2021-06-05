@@ -25,6 +25,12 @@ test('register("1","1","","1","1","1")  should return "Please ensure all fields 
   assert.deepEqual(result, expected); 
 });
 
+test('register("1","1","1","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
+  var result = register("1","1","1","1","1","1"); 
+  var expected = "tempSucess";
+  assert.deepEqual(result, expected); 
+});
+
 //passwords matching
 //  test('passwordsEqual(12, 12) should return true', function(assert) {
 //   var result = passwordsEqual(12, 12);
