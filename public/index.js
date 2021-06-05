@@ -41,47 +41,47 @@ function register(fName, lName, dob, email, password, cPassword){
   // var cPassword = document.getElementById("cPassword").value;
   
   var returnMesage = "";
-  // if(password == cPassword){
-  //   if(fName!= "" && lName != "" && dob != ""){
-  //     firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-  //       // Signed in 
-  //       var user = userCredential.user.uid;
-  //       var rootRef = firebase.database().ref();
-  //       var usersRef = rootRef.child("users").child(user).child("details");
-  //       var userData = 
-  //       {
-  //         firstName: fName,
-  //         lastName: lName,
-  //         dateOfBirth: dob,
-  //         email: email,
-  //         availableMoney: 10000
-  //       };
-  //       usersRef.set(userData, function(error){
-  //         if(error){
-  //           var errorCode = error.code;
-  //           var errorMessage = error.message;
+  if(password == cPassword){
+    if(fName!= "" && lName != "" && dob != ""){
+      firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+        // Signed in 
+        var user = userCredential.user.uid;
+        var rootRef = firebase.database().ref();
+        var usersRef = rootRef.child("users").child(user).child("details");
+        var userData = 
+        {
+          firstName: fName,
+          lastName: lName,
+          dateOfBirth: dob,
+          email: email,
+          availableMoney: 10000
+        };
+        usersRef.set(userData, function(error){
+          if(error){
+            var errorCode = error.code;
+            var errorMessage = error.message;
   
-  //           window.alert("Message : " + errorMessage);
-  //         }
-  //         else{
-  //           window.location.href = "index.html";
-  //         }
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-  //       window.alert(errorMessage)
-  //       // ..
-  //     });
-  //   }
-  //   else{
-  //     window.alert("Passwords do not match.");
-  //   }
-  // }
-  // else{
-  //   window.alert("Passwords do not match.");
-  // }
+            window.alert("Message : " + errorMessage);
+          }
+          else{
+            window.location.href = "index.html";
+          }
+        });
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        window.alert(errorMessage)
+        // ..
+      });
+    }
+    else{
+      window.alert("Passwords do not match.");
+    }
+  }
+  else{
+    window.alert("Passwords do not match.");
+  }
   returnMesage = "Shlomo";
   return returnMesage;
 }
