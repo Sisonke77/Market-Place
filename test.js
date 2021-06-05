@@ -28,7 +28,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 
 test('register()', function(assert){
   var result = register("","","","","",""); 
-  var expected = "Shlomo";
+  var expected = "Shlomo1";
   assert.deepEqual(result, expected); 
 });
 

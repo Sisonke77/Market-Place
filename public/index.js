@@ -83,7 +83,7 @@ function register(fName, lName, dob, email, password, cPassword){
   else{
     // window.alert("Passwords do not match.");
   }
-  returnMesage = "Shlomo";
+  returnMesage = "Shlomo1";
   return returnMesage;
 }
 
