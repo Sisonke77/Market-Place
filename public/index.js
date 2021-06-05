@@ -267,6 +267,29 @@ function checkoutOpen(){
   // });
 }
 
+function checkout(){
+  var streetAddress = document.getElementById("streetAddress").value;
+  window.alert(streetAddress)
+  firebase.auth().onAuthStateChanged(function(user){
+    var userUid = user.uid;
+    const dbRef = firebase.database().ref();
+    dbRef.child("users").child(userUid).child("cart").child(categoryId).child("totalPrice").set(price*quantity);
+  });
+}
+
+function checkoutDelevery(){
+  var mycars = new Array();
+  mycars[0] = 'Herr';
+  mycars[1] = 'Frau';
+
+  var options = '';
+
+  for (var i = 0; i < mycars.length; i++) {
+    options += '<option value="' + mycars[i] + '" />';
+  }
+  document.getElementById('streetAddress').innerHTML = options;
+} 
+
 function init(){
   firebase.auth().onAuthStateChanged(function(user){
     const dbRef = firebase.database().ref();
