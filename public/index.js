@@ -1,4 +1,4 @@
-// const firebase = require('firebase');
+var firebase = require('firebase');
 var firebaseConfig = {
   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
   authDomain: "witsmarketproject.firebaseapp.com",
@@ -10,8 +10,8 @@ var firebaseConfig = {
   measurementId: "G-EHXK572PE1"
 };
 // Initialize Firebase
-require('firebase').initializeApp(firebaseConfig);
-require('firebase').auth.Auth.Persistence.LOCAL;
+firebase.initializeApp(firebaseConfig);
+firebase.auth.Auth.Persistence.LOCAL;
 
 function login(){
   var email = document.getElementById("email").value;
