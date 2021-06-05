@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // Firebase App (the core Firebase SDK) is always required and must be listed first
 // import firebase from "firebase/app";
 // // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
@@ -10,6 +11,8 @@
 // import "firebase/auth";
 // import "firebase/firestore";
 
+=======
+>>>>>>> 5698fd9c7a74800c9e9a5e44f960993f47bd5f46
 const firebase = require('firebase');
  
 var firebaseConfig = {
@@ -309,7 +312,11 @@ function passwordsEqual (password1, password2) {
 };
 
 /* The code block below ONLY Applies to Node.js - This Demonstrates
+<<<<<<< HEAD
    re-useability of JS code in both Back-end and Front-end! #isomorphic */
+=======
+   re-useability of JS code in both SHBack-end and Front-end! #isomorphic */
+>>>>>>> 5698fd9c7a74800c9e9a5e44f960993f47bd5f46
 /* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
    module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
