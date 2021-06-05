@@ -77,13 +77,13 @@ function register(fName, lName, dob, email, password, cPassword){
       });
     }
     else{
+      returnMesage = "Please ensure all fields are filled";
       // window.alert("Passwords do not match.");
     }
   }
   else{
     // window.alert("Passwords do not match.");
   }
-  returnMesage = "Shlomo1";
   return returnMesage;
 }
 

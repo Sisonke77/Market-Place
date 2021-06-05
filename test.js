@@ -7,6 +7,24 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var register = require('./public/index.js'); // load our register method   
 }
 
+test('register("","1","1","1","1","1") should return "Please ensure all fields are filled"', function(assert){
+  var result = register("","1","1","1","1","1"); 
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected); 
+});
+
+test('register("1","","1","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
+  var result = register("1","","1","1","1","1"); 
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected); 
+});
+
+test('register("1","1","","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
+  var result = register("1","1","","1","1","1"); 
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected); 
+});
+
 //passwords matching
 //  test('passwordsEqual(12, 12) should return true', function(assert) {
 //   var result = passwordsEqual(12, 12);
@@ -26,10 +44,5 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 //   assert.deepEqual(result, expected); 
 // });
 
-test('register()', function(assert){
-  var result = register("","","","","",""); 
-  var expected = "Shlomo1";
-  assert.deepEqual(result, expected); 
-});
 
 if (typeof module !== 'undefined' && module.exports) { QUnit.load(); } // run the tests
