@@ -78,7 +78,7 @@
                         <a href="" class="cart-link">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <span>
-                            <a onclick href="cart.html">Cart</a>
+                            <a id="cart" onclick href="cart.html"></a>
                         </span>
                         </a>
                     </div>
@@ -195,12 +195,7 @@
             window.location.href = "signin.html";
         }
         else{
-          var cart_total;
-          const dbRef = firebase.database().ref();
-          dbRef.child("users").child(user.uid).child("details").child("firstName").once("value", function(data) {
-            var name = data.val();  
-            document.getElementById("fName").innerHTML ="Hi " + name;
-          });
+          init();
           checkoutOpen();
 
           // dbRef.child("users").child(user.uid).child("cart").child("totalCartPrice").once("value", function(cartData) {

@@ -258,4 +258,31 @@ function checkoutOpen(){
   // });
 }
 
+function init(){
+  firebase.auth().onAuthStateChanged(function(user){
+    const dbRef = firebase.database().ref();
+
+    //welcome
+    dbRef.child("users").child(user.uid).child("details").child("firstName").once("value", function(data) {
+      var name = data.val();  
+      document.getElementById("fName").innerHTML ="Hi " + name;
+    });
+
+    //cart
+    dbRef.child("users").child(user.uid).child("cart").once("value", function(data) {
+      var products = data.val();
+      if(products != null){
+        var productsSize = Object.keys(products).length;
+        if("totalCartPrice" in products){
+          productsSize--;
+        }
+        document.getElementById("cart").innerHTML ="CART (" + productsSize+")";
+      } 
+      else{
+        document.getElementById("cart").innerHTML = "CART";
+      } 
+    });
+  });
+}
+
   
