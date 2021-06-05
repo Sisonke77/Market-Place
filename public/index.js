@@ -120,7 +120,9 @@ function cartToFirebase(productId){
         productId: productId,
         quantity: 1
       };
-      usersRef.set(userData)
+      usersRef.set(userData);
+      window.alert("Product has been added to your cart");
+      location.reload();
   });
 }
 
