@@ -94,7 +94,12 @@ function getCategoryAndProductId(productId){
   categoryArray = ["Clothes", "Food", "Games", "Sports", "Technology"];
   for(var i=0; i<categoryArray.length; i++){
     if(productId.toString().charAt(0) == arr[i]){
-      return [categoryArray[i], (productId-(i+1)*1000)];
+      if(productId.toString().length == 4){
+        return [categoryArray[i], (productId-(i+1)*1000)];
+      }
+      else if(productId.toString().length == 5){
+        return [categoryArray[i], (productId-(i+1)*10000)];
+      }
     }
   }
 }
