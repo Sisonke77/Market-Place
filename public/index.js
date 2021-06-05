@@ -94,7 +94,12 @@ function getCategoryAndProductId(productId){
   categoryArray = ["Clothes", "Food", "Games", "Sports", "Technology"];
   for(var i=0; i<categoryArray.length; i++){
     if(productId.toString().charAt(0) == arr[i]){
-      return [categoryArray[i], (productId-(i+1)*1000)];
+      if(productId.toString().length == 4){
+        return [categoryArray[i], (productId-(i+1)*1000)];
+      }
+      else if(productId.toString().length == 5){
+        return [categoryArray[i], (productId-(i+1)*10000)];
+      }
     }
   }
 }
@@ -284,17 +289,5 @@ function init(){
     });
   });
 }
-
-function passwordsEqual (password1, password2) {
-  return password1 == password2;
-};
-
-/* The code block below ONLY Applies to Node.js - This Demonstrates
-   re-useability of JS code in both Back-end and Front-end! #isomorphic */
-/* istanbul ignore next */
-if (typeof module !== 'undefined' && module.exports) {
-   module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
-}
-
 
   
