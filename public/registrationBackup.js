@@ -80,7 +80,6 @@ function register(){
   else{
     window.alert("Passwords do not match.");
   }
-  return true; 
 }
 
 function logout(){
@@ -120,9 +119,7 @@ function cartToFirebase(productId){
         productId: productId,
         quantity: 1
       };
-      usersRef.set(userData);
-      window.alert("Product has been added to your cart");
-      location.reload();
+      usersRef.set(userData)
   });
 }
 
@@ -301,10 +298,7 @@ function passwordsEqual (password1, password2) {
 /* The code block below ONLY Applies to Node.js - This Demonstrates
    re-useability of JS code in both Back-end and Front-end! #isomorphic */
 /* istanbul ignore next */
-// if (typeof module !== 'undefined' && module.exports) {
-//    module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
-// }
 if (typeof module !== 'undefined' && module.exports) {
-     module.exports = register;  // allows CommonJS/Node.js require()
-  }
+   module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
+}
   
