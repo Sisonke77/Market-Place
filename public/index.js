@@ -11,7 +11,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 require('firebase').initializeApp(firebaseConfig);
-// firebase.auth.Auth.Persistence.LOCAL;
+require('firebase').auth.Auth.Persistence.LOCAL;
 
 function login(){
   var email = document.getElementById("email").value;
