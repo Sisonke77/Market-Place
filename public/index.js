@@ -24,17 +24,12 @@ function login(email,password){
   if (email == "" && password ==""){
     return "Please ensure all fields are filled";
   }
-  firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    //window.alert(user.uid);
-    window.location.href = "index.html";
-  })
+  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
   .catch((error) => {
     var errorMessage = error.message;
-    window.alert(errorMessage)
+    // window.alert(errorMessage)
   });
+  return "error"
 }
 
 

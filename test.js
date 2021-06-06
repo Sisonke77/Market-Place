@@ -81,6 +81,12 @@ test('login("", "") should return "Please ensure all fields are filled"', functi
   assert.deepEqual(result, expected);
 });
 
+//test valid input that DNE in the DB
+test('login("sds@ksdjh.gmail.com", "123456") should return "error"', function(assert){
+  var result = login("sds@ksdjh.gmail.com", "123456");
+  var expected = "error";
+  assert.deepEqual(result, expected);
+});
 
 
 
