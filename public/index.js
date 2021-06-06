@@ -293,6 +293,10 @@ function checkoutDelevery(){
   document.getElementById('streetAddress').innerHTML = options;
 } 
 
+function goToOrderHistory(){
+  window.location.href = "orderHistory.html";
+}
+
 function init(){
   firebase.auth().onAuthStateChanged(function(user){
     const dbRef = firebase.database().ref();
