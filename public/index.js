@@ -41,6 +41,8 @@ function register(fName, lName, dob, email, password, cPassword){
         // returnMesage = "success";
         // window.alert("test1 ")
         var result = createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
+        console.log("Done with firebase")
+        return ""; 
       }
       else{
         returnMesage = "Please ensure all fields are filled";
@@ -78,27 +80,36 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
       email: email,
       availableMoney: 10000
     };
+    console.log("test 3")
     usersRef.set(userData, function(error){
+      console.log("test 4")
       if(error){
         var errorCode = error.code;
         var errorMessage = error.message;
         // document.getElementById('errorLbl').innerHTML = errorMessage;
         // window.alert("Message : " + errorMessage);
+        console.log("test 5")
       }
       else{
+        console.log("test 6")
+        return "";
       // returnMesage = "success";
       // window.alert(returnMesage)
         // window.location.href = "index.html";
       }
+      console.log("test 7")
     });
+    console.log("test 8")
   })
   .catch((error) => {
+    console.log("test 9")
     var errorCode = error.code;
     var errorMessage = error.message;
     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
   });
-  return ""; 
+  console.log("test 10")
+  // return ""; 
 }
 
 
