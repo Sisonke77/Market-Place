@@ -245,7 +245,7 @@ function updateInFirebase(difference){
   });
 }
 
-function checkout(){
+function pay(){
   var streetAddress = document.getElementById("streetAddress").value;
   window.alert(streetAddress)
   firebase.auth().onAuthStateChanged(function(user){
