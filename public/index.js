@@ -36,6 +36,7 @@ function register(fName, lName, dob, email, password, cPassword){
   var returnMesage = "";
   if(password == cPassword){
     if(fName!= "" && lName != "" && dob != ""){
+      returnMesage = "success";
       // console.log("succ1")
       firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
         // returnMesage = "success";
