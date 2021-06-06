@@ -49,8 +49,8 @@ test('register("1","1","1","1","114543","128787")  should return "Passwords do n
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","fdsft43s@gm567.com","123456","123456")  should return ""', function(assert){
-  var result = register("1","1","1","asdfdsa@4jiuy.com.com","123456","123456"); 
+test('register("1","1","1","fdsft43s@","123456","123456")  should return ""', function(assert){
+  var result = register("1","1","1","a1sdfdsa@4ji","123456","123456"); 
   var expected = "";
   assert.deepEqual(result, expected); 
 });

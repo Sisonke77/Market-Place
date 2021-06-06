@@ -38,10 +38,7 @@ function register(fName, lName, dob, email, password, cPassword){
   if (password != "" && cPassword != ""){
     if(password == cPassword){
       if(fName!= "" && lName != "" && dob != "" && email!= ""){
-        // returnMesage = "success";
-        // window.alert("test1 ")
-        var result = createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
-        console.log("Done with firebase")
+        createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
         return ""; 
       }
       else{
@@ -53,7 +50,7 @@ function register(fName, lName, dob, email, password, cPassword){
     else{
       returnMesage = "Passwords do not match"
       // document.getElementById('errorLbl').innerHTML = returnMesage;
-      // window.alert("Passwords do not match.");
+      // window.alert(returnMesage);
     }
       return returnMesage;
   }else{
@@ -65,10 +62,8 @@ function register(fName, lName, dob, email, password, cPassword){
 }
 
 function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
-  console.log("test 1");
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    console.log("test 2");
     var user = userCredential.user.uid;
     var rootRef = firebase.database().ref();
     var usersRef = rootRef.child("users").child(user).child("details");
@@ -80,35 +75,31 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
       email: email,
       availableMoney: 10000
     };
-    console.log("test 3")
     usersRef.set(userData, function(error){
-      console.log("test 4")
       if(error){
         var errorCode = error.code;
         var errorMessage = error.message;
         // document.getElementById('errorLbl').innerHTML = errorMessage;
         // window.alert("Message : " + errorMessage);
-        console.log("test 5")
       }
       else{
-        console.log("test 6")
+        window.location.href = "index.html";
+        // returnMesage = "success";
+        // window.alert(returnMesage)
         return "";
-      // returnMesage = "success";
-      // window.alert(returnMesage)
-        // window.location.href = "index.html";
+      
+        // 
       }
-      console.log("test 7")
     });
-    console.log("test 8")
   })
   .catch((error) => {
-    console.log("test 9")
     var errorCode = error.code;
     var errorMessage = error.message;
+    // window.alert(errorMessage);
+    return ""
     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
   });
-  console.log("test 10")
   // return ""; 
 }
 
