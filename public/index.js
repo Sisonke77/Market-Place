@@ -40,39 +40,7 @@ function register(fName, lName, dob, email, password, cPassword){
       if(fName!= "" && lName != "" && dob != "" && email!= ""){
         // returnMesage = "success";
         // window.alert("test1 ")
-        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-          // Signed in 
-          var user = userCredential.user.uid;
-          var rootRef = firebase.database().ref();
-          var usersRef = rootRef.child("users").child(user).child("details");
-          var userData = 
-          {
-            firstName: fName,
-            lastName: lName,
-            dateOfBirth: dob,
-            email: email,
-            availableMoney: 10000
-          };
-          usersRef.set(userData, function(error){
-            if(error){
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // document.getElementById('errorLbl').innerHTML = errorMessage;
-              // window.alert("Message : " + errorMessage);
-            }
-            else{
-            // returnMesage = "success";
-            // window.alert(returnMesage)
-              window.location.href = "index.html";
-            }
-          });
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
-          // // ..
-        });
+        var result = createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
       }
       else{
         returnMesage = "Please ensure all fields are filled";
@@ -93,7 +61,45 @@ function register(fName, lName, dob, email, password, cPassword){
     return returnMesage;
   }
 }
- 
+
+function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
+  console.log("test 1");
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+    // Signed in 
+    console.log("test 2");
+    var user = userCredential.user.uid;
+    var rootRef = firebase.database().ref();
+    var usersRef = rootRef.child("users").child(user).child("details");
+    var userData = 
+    {
+      firstName: fName,
+      lastName: lName,
+      dateOfBirth: dob,
+      email: email,
+      availableMoney: 10000
+    };
+    usersRef.set(userData, function(error){
+      if(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // document.getElementById('errorLbl').innerHTML = errorMessage;
+        // window.alert("Message : " + errorMessage);
+      }
+      else{
+      // returnMesage = "success";
+      // window.alert(returnMesage)
+        // window.location.href = "index.html";
+      }
+    });
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
+    // // ..
+  });
+  return ""; 
+}
 
 
 function logout(){

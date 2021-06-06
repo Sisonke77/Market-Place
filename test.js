@@ -43,15 +43,15 @@ test('register("1","1","1","1","1","")  should return "Please ensure all fields 
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","fdsft43s@gmail.com","123456","123456")  should return ""', function(assert){
-  var result = register("1","1","1","fdsfds@gmail.com","123456","123456"); 
-  var expected = "";
-  assert.deepEqual(result, expected); 
-});
-
 test('register("1","1","1","1","114543","128787")  should return "Passwords do not match"', function(assert){
   var result = register("1","1","1","1","114543","128787"); 
   var expected = "Passwords do not match";
+  assert.deepEqual(result, expected); 
+});
+
+test('register("1","1","1","fdsft43s@gm987.com","123456","123456")  should return ""', function(assert){
+  var result = register("1","1","1","fdsft43s@gm987.com","123456","123456"); 
+  var expected = "";
   assert.deepEqual(result, expected); 
 });
 
