@@ -36,11 +36,12 @@ function register(fName, lName, dob, email, password, cPassword){
   var returnMesage = "";
   if(password == cPassword){
     if(fName!= "" && lName != "" && dob != ""){
-      returnMesage = "success";
+      // returnMesage = "success";
       // console.log("succ1")
+      // window.alert("test1 ")
       firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        // returnMesage = "success";
-        
+        window.alert("test 2")
+        returnMesage = "success";
         // Signed in 
         var user = userCredential.user.uid;
         var rootRef = firebase.database().ref();
@@ -61,26 +62,33 @@ function register(fName, lName, dob, email, password, cPassword){
             // window.alert("Message : " + errorMessage);
           }
           else{
+            // window.alert("test 3")
+          // returnMesage = "success";
+          // window.alert(returnMesage)
             window.location.href = "index.html";
           }
         });
         // returnMesage =  "success";
       })
       .catch((error) => {
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // // window.alert(errorMessage)
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // window.alert(errorMessage)
         // // ..
       });
     }
     else{
       returnMesage = "Please ensure all fields are filled";
-      // window.alert("Passwords do not match.");
+      // window.alert(returnMesage);
     }
   }
   else{
     // window.alert("Passwords do not match.");
   }
+  if (returnMesage == ""){
+    returnMesage = "success"
+  }
+  
   return returnMesage;
 }
 

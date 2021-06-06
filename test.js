@@ -25,8 +25,8 @@ test('register("1","1","","1","1","1")  should return "Please ensure all fields 
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","name@gmail.com","123456","123456")  should return "success"', function(assert){
-  var result = register("1","1","1","name@gmail.com","123456","123456"); 
+test('register("1","1","2005-01-06","name@gmail.com","123456","123456")  should return "success"', function(assert){
+  var result = register("1","1","2005-01-06","name@gmail.com","123456","123456"); 
   var expected = "success";
   assert.deepEqual(result, expected); 
 });
