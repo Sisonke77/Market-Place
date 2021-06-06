@@ -88,7 +88,7 @@ function register(fName, lName, dob, email, password, cPassword){
   if (returnMesage == ""){
     returnMesage = "success"
   }
-  
+  // window.alert(returnMesage)
   return returnMesage;
 }
 
