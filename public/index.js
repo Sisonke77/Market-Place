@@ -251,6 +251,22 @@ function updateOrderHistoryFirebase(){
     var date_id = "id_" + new_date;
     dbRef.child("users").child(userUid).child("orderHistory").child(date_id).set(cartObject);
     dbRef.child("users").child(userUid).child("cart").set(null);
+
+    for(var categoryId in cartObject){
+      if (categoryId != "totalCartPrice" && categoryId != "addressDetails"){
+        var category = cartObject[categoryId].category;
+        var product_id = cartObject[categoryId].productId;
+        var quantity = cartObject[categoryId].quantity;
+        var productObject;
+        dbRef.child("prodcutCategory").child(category).once("value", function(data) {
+          productObject = data.val();
+        });
+        var stock_remaining = productObject[product_id].stockRemaining;
+        dbRef.child("prodcutCategory").child(category).child(product_id).child("stockRemaining").set(stock_remaining - quantity);
+        // window.alert(stock_remaining);
+      }
+    }
+    // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
   });
 }
 
