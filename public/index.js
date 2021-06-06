@@ -57,39 +57,34 @@ function register(fName, lName, dob, email, password, cPassword){
               var errorCode = error.code;
               var errorMessage = error.message;
               
-              // window.alert("Message : " + errorMessage);
+              window.alert("Message : " + errorMessage);
             }
             else{
-              // window.alert("test 3")
             // returnMesage = "success";
             // window.alert(returnMesage)
-              console.log("S")
-              // window.location.href = "index.html";
+              window.location.href = "index.html";
             }
           });
         })
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          console.log("F")
-          // window.alert(errorMessage)
+          window.alert(errorMessage)
           // // ..
         });
       }
       else{
         returnMesage = "Please ensure all fields are filled";
-        // window.alert(returnMesage);
+        window.alert(returnMesage);
       }
     }
     else{
       returnMesage = "Passwords do not match"
-      // window.alert("Passwords do not match.");
-    }
-    if (returnMesage == ""){
-      returnMesage = "error"
+      window.alert("Passwords do not match.");
     }
       return returnMesage;
   }else{
+    window.alert("Please ensure all fields are filled");
     return "Please ensure all fields are filled";
   }
 }
