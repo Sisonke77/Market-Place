@@ -74,9 +74,7 @@ function register(fName, lName, dob, email, password, cPassword){
 function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    var user = userCredential.user.uid;
-    var rootRef = firebase.database().ref();
-    var usersRef = rootRef.child("users").child(user).child("details");
+    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = rootRef.child("users").child(user).child("details");
     var userData = 
     {
       firstName: fName,
