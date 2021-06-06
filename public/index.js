@@ -15,21 +15,28 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
 function login(email,password){ 
+  var message =""
   if (email == ""){
-    return "Please ensure all fields are filled";
+    message = "Please ensure all fields are filled";
   }
   if (password == ""){
-    return "Please ensure all fields are filled";
+    message = "Please ensure all fields are filled";
   }
   if (email == "" && password ==""){
-    return "Please ensure all fields are filled";
+    message = "Please ensure all fields are filled";
   }
   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
   .catch((error) => {
     var errorMessage = error.message;
+    console.log(errorMessage);
     // window.alert(errorMessage)
   });
-  return "error"
+  if (message == ""){
+    return "error";
+  }else{
+    return message;
+  }
+  
 }
 
 
