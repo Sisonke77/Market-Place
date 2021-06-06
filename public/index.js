@@ -37,11 +37,8 @@ function register(fName, lName, dob, email, password, cPassword){
   if(password == cPassword){
     if(fName!= "" && lName != "" && dob != ""){
       returnMesage = "success";
-      console.log("succ1")
       // window.alert("test1 ")
       firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        window.alert("test 2")
-        returnMesage = "success";
         // Signed in 
         var user = userCredential.user.uid;
         var rootRef = firebase.database().ref();
@@ -65,6 +62,8 @@ function register(fName, lName, dob, email, password, cPassword){
             // window.alert("test 3")
           // returnMesage = "success";
           // window.alert(returnMesage)
+          console.log("succ1")
+        returnMesage = "success";
             window.location.href = "index.html";
           }
         });
