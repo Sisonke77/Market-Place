@@ -49,9 +49,9 @@ test('register("1","1","1","1","1","1")  should return "testing for correctness"
   assert.deepEqual(result, expected); 
 });
 
-test('register("s","b","2020-12-12","Sb321234@dfg.gmail.com","abcdef","abcdef")  should return "testing for correctness"', function(assert){
-  var result = register("s","b","2020-12-12","Sb321234@dfg.gmail.com","abcdef","abcdef"); 
-  var expected = "error";
+test('register("1","1","1","1","1","12")  should return "Passwords do not match"', function(assert){
+  var result = register("1","1","1","1","1","12"); 
+  var expected = "Passwords do not match";
   assert.deepEqual(result, expected); 
 });
 
