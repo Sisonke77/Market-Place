@@ -4,7 +4,10 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var test = QUnit.test; // stores a copy of QUnit.test
   require('qunit-tap')(QUnit, console.log); // use console.log for test output
   // var passwordsEqual = require('./public/index.js'); // load our passwordsEqual method   
-  var register = require('./public/index.js'); // load our register method   
+  // var register = require('./public/index.js'); // load our register method   
+  var methods = require('./public/index.js');
+  var register = methods.register;
+  var login = methods.login;
 }
 
 test('register("","1","1","1","1","1") should return "Please ensure all fields are filled"', function(assert){
@@ -53,6 +56,29 @@ test('register("1","1","1","fdsft43s@","123456","123456")  should return ""', fu
   var result = register("1","1","1","a1sdfdsa@4ji","123456","123456"); 
   var expected = "";
   assert.deepEqual(result, expected); 
+});
+
+//testing missing input
+
+//email missing, password given
+test('login("", "123456") should return "Please ensure all fields are filled"', function(assert){
+  var result = login("", "123456");
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected);
+});
+
+//email given, passwrod missing
+test('login("x", "") should return "Please ensure all fields are filled"', function(assert){
+  var result = login("x", "");
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected);
+});
+
+//email and password missing
+test('login("", "") should return "Please ensure all fields are filled"', function(assert){
+  var result = login("x", "");
+  var expected = "Please ensure all fields are filled";
+  assert.deepEqual(result, expected);
 });
 
 

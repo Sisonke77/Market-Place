@@ -40,6 +40,6 @@
     "qunitjs": "^2.4.1"
   },
   "dependencies": {
-    "firebase": "^8.6.2"
+    "firebase": "^8.6.5"
   }
 }

@@ -14,10 +14,16 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-function login(){
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-
+function login(email,password){ 
+  if (email == ""){
+    return "Please ensure all fields are filled";
+  }
+  if (password == ""){
+    return "Please ensure all fields are filled";
+  }
+  if (email == "" && password ==""){
+    return "Please ensure all fields are filled";
+  }
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in
@@ -307,17 +313,12 @@ function init(){
   });
 }
 
-function passwordsEqual (password1, password2) {
-  return password1 == password2;
-};
 
-/* The code block below ONLY Applies to Node.js - This Demonstrates
-   re-useability of JS code in both Back-end and Front-end! #isomorphic */
-/* istanbul ignore next */
-// if (typeof module !== 'undefined' && module.exports) {
-//    module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
-// }
 if (typeof module !== 'undefined' && module.exports) {
-     module.exports = register;  // allows CommonJS/Node.js require()
+     module.exports = 
+     {
+       register,
+       login,
+     };
   }
   
