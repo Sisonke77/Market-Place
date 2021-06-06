@@ -14,6 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
+var testing= ["9"]; 
 function login(email,password){ 
   var message =""
   if (email == ""){
@@ -28,9 +29,10 @@ function login(email,password){
   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
   .catch((error) => {
     var errorMessage = error.message;
-    console.log(errorMessage);
+    // console.log(errorMessage);
     // window.alert(errorMessage)
-  });
+  }); 
+  
   if (message == ""){
     return "error";
   }else{
