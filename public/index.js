@@ -37,44 +37,12 @@ function register(fName, lName, dob, email, password, cPassword){
   if (password != "" && cPassword != ""){
     if(password == cPassword){
       if(fName!= "" && lName != "" && dob != "" && email!= ""){
-        // returnMesage = "success";
-        // window.alert("test1 ")
-        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-          // Signed in 
-          var user = userCredential.user.uid;
-          var rootRef = firebase.database().ref();
-          var usersRef = rootRef.child("users").child(user).child("details");
-          var userData = 
-          {
-            firstName: fName,S
-            lastName: lName,
-            dateOfBirth: dob,
-            email: email,
-            availableMoney: 10000
-          };
-          usersRef.set(userData, function(error){
-            if(error){
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              
-              // window.alert("Message : " + errorMessage);
-            }
-            else{
-              // window.alert("test 3")
-            // returnMesage = "success";
-            // window.alert(returnMesage)
-              console.log("S")
-              // window.location.href = "index.html";
-            }
-          });
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log("F")
-          // window.alert(errorMessage)
-          // // ..
-        });
+        var message = ""; 
+        message = registerFirebase(fName, lName, dob, email, password, cPassword); 
+        // const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+        // sleep(5000);
+        // console.log("executing after 5 sec")
+        return message;
       }
       else{
         returnMesage = "Please ensure all fields are filled";
@@ -89,6 +57,46 @@ function register(fName, lName, dob, email, password, cPassword){
   }else{
     return "Please ensure all fields are filled";
   }
+}
+
+function registerFirebase(){
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user.uid;
+    var rootRef = firebase.database().ref();
+    var usersRef = rootRef.child("users").child(user).child("details");
+    var userData = 
+    {
+      firstName: fName,
+      lastName: lName,
+      dateOfBirth: dob,
+      email: email,
+      availableMoney: 10000
+    };
+    usersRef.set(userData, function(error){
+      if(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // window.alert("Message : " + errorMessage);
+      }
+      else{
+        
+        // window.alert("test 3")
+      // returnMesage = "success";
+      // window.alert(returnMesage)
+        console.log("S")
+        // window.location.href = "index.html";
+      }
+    });
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log("F")
+    // window.alert(errorMessage)
+    // // ..
+  });
+  return true; 
 }
  
 
