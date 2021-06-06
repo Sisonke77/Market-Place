@@ -76,7 +76,7 @@ test('login("x", "") should return "Please ensure all fields are filled"', funct
 
 //email and password missing
 test('login("", "") should return "Please ensure all fields are filled"', function(assert){
-  var result = login("x", "");
+  var result = login("", "");
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected);
 });
