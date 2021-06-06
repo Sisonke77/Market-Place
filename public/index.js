@@ -33,18 +33,13 @@ function login(){
 
 
 function register(fName, lName, dob, email, password, cPassword){
-
-  // var fName = document.getElementById("fName").value;
-  // var lName = document.getElementById("lName").value;
-  // var dob = document.getElementById("dob").value;
-  // var email = document.getElementById("email").value;
-  // var password = document.getElementById("password").value;
-  // var cPassword = document.getElementById("cPassword").value;
-  
   var returnMesage = "";
   if(password == cPassword){
     if(fName!= "" && lName != "" && dob != ""){
+      // console.log("succ1")
       firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+        // returnMesage = "success";
+        
         // Signed in 
         var user = userCredential.user.uid;
         var rootRef = firebase.database().ref();
@@ -61,21 +56,21 @@ function register(fName, lName, dob, email, password, cPassword){
           if(error){
             var errorCode = error.code;
             var errorMessage = error.message;
-  
+            
             // window.alert("Message : " + errorMessage);
           }
           else{
             window.location.href = "index.html";
           }
         });
+        // returnMesage =  "success";
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // window.alert(errorMessage)
-        // ..
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        // // window.alert(errorMessage)
+        // // ..
       });
-      return "tempSucess";
     }
     else{
       returnMesage = "Please ensure all fields are filled";
