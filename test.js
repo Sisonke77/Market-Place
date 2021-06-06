@@ -49,8 +49,8 @@ test('register("1","1","1","1","1","1")  should return "testing for correctness"
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","1","1","12")  should return "Passwords do not match"', function(assert){
-  var result = register("1","1","1","1","1","12"); 
+test('register("1","1","1","1","114543","128787")  should return "Passwords do not match"', function(assert){
+  var result = register("1","1","1","1","114543","128787"); 
   var expected = "Passwords do not match";
   assert.deepEqual(result, expected); 
 });
