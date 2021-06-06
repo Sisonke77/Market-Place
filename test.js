@@ -43,9 +43,9 @@ test('register("1","1","1","1","1","")  should return "Please ensure all fields 
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","1","1","1")  should return "testing for correctness"', function(assert){
-  var result = register("1","1","1","1","1","1"); 
-  var expected = "error";
+test('register("1","1","1","fdsft43s@gmail.com","123456","123456")  should return ""', function(assert){
+  var result = register("1","1","1","fdsfds@gmail.com","123456","123456"); 
+  var expected = "";
   assert.deepEqual(result, expected); 
 });
 

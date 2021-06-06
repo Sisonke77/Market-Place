@@ -1,4 +1,5 @@
 var firebase = require('firebase');
+
 var firebaseConfig = {
   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
   authDomain: "witsmarketproject.firebaseapp.com",
@@ -56,8 +57,8 @@ function register(fName, lName, dob, email, password, cPassword){
             if(error){
               var errorCode = error.code;
               var errorMessage = error.message;
-              
-              window.alert("Message : " + errorMessage);
+              // document.getElementById('errorLbl').innerHTML = errorMessage;
+              // window.alert("Message : " + errorMessage);
             }
             else{
             // returnMesage = "success";
@@ -69,23 +70,27 @@ function register(fName, lName, dob, email, password, cPassword){
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          window.alert(errorMessage)
+          // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
           // // ..
         });
       }
       else{
         returnMesage = "Please ensure all fields are filled";
-        window.alert(returnMesage);
+        // document.getElementById('errorLbl').innerHTML = returnMesage;
+        // window.alert(returnMesage);
       }
     }
     else{
       returnMesage = "Passwords do not match"
-      window.alert("Passwords do not match.");
+      // document.getElementById('errorLbl').innerHTML = returnMesage;
+      // window.alert("Passwords do not match.");
     }
       return returnMesage;
   }else{
-    window.alert("Please ensure all fields are filled");
-    return "Please ensure all fields are filled";
+    // window.alert("Please ensure all fields are filled");
+    returnMesage = "Please ensure all fields are filled";
+    // document.getElementById('errorLbl').innerHTML = returnMesage;
+    return returnMesage;
   }
 }
  
