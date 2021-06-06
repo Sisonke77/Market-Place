@@ -71,7 +71,10 @@ function register(fName, lName, dob, email, password, cPassword){
   }
 }
 
+
 function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
+ 
+  
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
     var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = rootRef.child("users").child(user).child("details");
@@ -87,14 +90,15 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
       if(error){
         var errorCode = error.code;
         var errorMessage = error.message;
+        arr.push(errorMessage);
         // document.getElementById('errorLbl').innerHTML = errorMessage;
         // window.alert("Message : " + errorMessage);
       }
       else{
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
         // returnMesage = "success";
         // window.alert(returnMesage)
-        return "";
+        // return "";
       
         // 
       }
@@ -103,8 +107,9 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
+
     // window.alert(errorMessage);
-    return ""
+    // return ""
     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
   });
