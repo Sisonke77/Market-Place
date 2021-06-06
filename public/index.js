@@ -46,7 +46,7 @@ function register(fName, lName, dob, email, password, cPassword){
           var usersRef = rootRef.child("users").child(user).child("details");
           var userData = 
           {
-            firstName: fName,
+            firstName: fName,S
             lastName: lName,
             dateOfBirth: dob,
             email: email,
