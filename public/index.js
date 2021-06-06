@@ -221,7 +221,7 @@ function checkoutOpen(){
       var totalCartPrice = 0;
       // var count = 0;
       for(var categoryId in cartObject){
-        if (categoryId != "totalCartPrice"){
+        if (categoryId != "totalCartPrice" && categoryId != "addressDetails"){
           totalCartPrice += cartObject[categoryId].totalPrice;
           // count ++;
           // window.alert(totalCartPrice + " " + count);
@@ -247,6 +247,7 @@ function confirmYourOrder(){
       difference = available_money - total_cart_price;
       if (difference >= 0){
         updateInFirebase(difference);
+        updateOrderHistoryFirebase();
         window.alert("Your Order Is Confirmed!");
         window.location.href = "index.html";
       }
@@ -264,6 +265,38 @@ function updateInFirebase(difference){
     dbRef.on('value', function(datasnapshot){
       dbRef.child("users").child(userUid).child("details").child("availableMoney").set(difference);
     });
+  });
+}
+
+function updateOrderHistoryFirebase(){
+  firebase.auth().onAuthStateChanged(function(user){
+    var cartObject;
+    var userUid = user.uid;
+    const dbRef = firebase.database().ref();
+    dbRef.child("users").child(userUid).child("cart").once("value", function(data) {
+      cartObject = data.val();
+    });
+
+    var new_date = Date.now();
+    var date_id = "id_" + new_date;
+    dbRef.child("users").child(userUid).child("orderHistory").child(date_id).set(cartObject);
+    dbRef.child("users").child(userUid).child("cart").set(null);
+
+    for(var categoryId in cartObject){
+      if (categoryId != "totalCartPrice" && categoryId != "addressDetails"){
+        var category = cartObject[categoryId].category;
+        var product_id = cartObject[categoryId].productId;
+        var quantity = cartObject[categoryId].quantity;
+        var productObject;
+        dbRef.child("prodcutCategory").child(category).once("value", function(data) {
+          productObject = data.val();
+        });
+        var stock_remaining = productObject[product_id].stockRemaining;
+        dbRef.child("prodcutCategory").child(category).child(product_id).child("stockRemaining").set(stock_remaining - quantity);
+        // window.alert(stock_remaining);
+      }
+    }
+    // dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
   });
 }
 
@@ -289,6 +322,10 @@ function checkoutDelevery(){
   }
   document.getElementById('streetAddress').innerHTML = options;
 } 
+
+function goToOrderHistory(){
+  window.location.href = "orderHistory.html";
+}
 
 function init(){
   firebase.auth().onAuthStateChanged(function(user){
