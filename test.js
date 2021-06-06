@@ -49,8 +49,8 @@ test('register("1","1","1","1","1","1")  should return "testing for correctness"
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","1","1","1")  should return "testing for correctness"', function(assert){
-  var result = register("s","b","2020-12-12","Sb324@dfg.gmail.com","abcdef","abcdef"); 
+test('register("s","b","2020-12-12","Sb321234@dfg.gmail.com","abcdef","abcdef")  should return "testing for correctness"', function(assert){
+  var result = register("s","b","2020-12-12","Sb321234@dfg.gmail.com","abcdef","abcdef"); 
   var expected = "error";
   assert.deepEqual(result, expected); 
 });
