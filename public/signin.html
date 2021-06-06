@@ -38,7 +38,9 @@
                 <input placeholder="e.g: example@gmail.com" type="text" name="email" id="email"><br>
                 <label for="password">Password:</label><br>
                 <input placeholder="e.g: abcdef" type="password" name="password" id="password"><br>
-                <button type="button" class="btn waves-effect waves-light" onclick="login()">Login</button><br>
+                <button type="button" class="btn waves-effect waves-light" 
+                onclick="login(document.getElementById('email').value, 
+                document.getElementById('password').value)">Login</button><br>
                 <a href="signup.html">Not have an account? Sign up</a>
             </form>
         </main>

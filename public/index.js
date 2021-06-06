@@ -1,4 +1,5 @@
 var firebase = require('firebase');
+
 var firebaseConfig = {
   apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
   authDomain: "witsmarketproject.firebaseapp.com",
@@ -13,21 +14,29 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-function login(){
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    //window.alert(user.uid);
-    window.location.href = "index.html";
-  })
+function login(email,password){ 
+  var message =""
+  if (email == ""){
+    message = "Please ensure all fields are filled";
+  }
+  if (password == ""){
+    message = "Please ensure all fields are filled";
+  }
+  if (email == "" && password ==""){
+    message = "Please ensure all fields are filled";
+  }
+  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
   .catch((error) => {
     var errorMessage = error.message;
-    window.alert(errorMessage)
+    console.log(errorMessage);
+    // window.alert(errorMessage)
   });
+  if (message == ""){
+    return "error";
+  }else{
+    return message;
+  }
+  
 }
 
 
@@ -37,29 +46,30 @@ function register(fName, lName, dob, email, password, cPassword){
   if (password != "" && cPassword != ""){
     if(password == cPassword){
       if(fName!= "" && lName != "" && dob != "" && email!= ""){
-        var message = ""; 
-        message = registerFirebase(fName, lName, dob, email, password, cPassword); 
-        // const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
-        // sleep(5000);
-        // console.log("executing after 5 sec")
-        return message;
+        createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
+        return ""; 
       }
       else{
         returnMesage = "Please ensure all fields are filled";
+        // document.getElementById('errorLbl').innerHTML = returnMesage;
         // window.alert(returnMesage);
       }
     }
     else{
       returnMesage = "Passwords do not match"
-      // window.alert("Passwords do not match.");
+      // document.getElementById('errorLbl').innerHTML = returnMesage;
+      // window.alert(returnMesage);
     }
       return returnMesage;
   }else{
-    return "Please ensure all fields are filled";
+    // window.alert("Please ensure all fields are filled");
+    returnMesage = "Please ensure all fields are filled";
+    // document.getElementById('errorLbl').innerHTML = returnMesage;
+    return returnMesage;
   }
 }
 
-function registerFirebase(){
+function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
     var user = userCredential.user.uid;
@@ -77,28 +87,29 @@ function registerFirebase(){
       if(error){
         var errorCode = error.code;
         var errorMessage = error.message;
+        // document.getElementById('errorLbl').innerHTML = errorMessage;
         // window.alert("Message : " + errorMessage);
       }
       else{
-        
-        // window.alert("test 3")
-      // returnMesage = "success";
-      // window.alert(returnMesage)
-        console.log("S")
-        // window.location.href = "index.html";
+        window.location.href = "index.html";
+        // returnMesage = "success";
+        // window.alert(returnMesage)
+        return "";
+      
+        // 
       }
     });
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log("F")
-    // window.alert(errorMessage)
+    // window.alert(errorMessage);
+    return ""
+    // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
   });
-  return true; 
+  // return ""; 
 }
- 
 
 
 function logout(){
@@ -341,17 +352,12 @@ function init(){
   });
 }
 
-function passwordsEqual (password1, password2) {
-  return password1 == password2;
-};
 
-/* The code block below ONLY Applies to Node.js - This Demonstrates
-   re-useability of JS code in both Back-end and Front-end! #isomorphic */
-/* istanbul ignore next */
-// if (typeof module !== 'undefined' && module.exports) {
-//    module.exports = passwordsEqual;  // allows CommonJS/Node.js require()
-// }
 if (typeof module !== 'undefined' && module.exports) {
-     module.exports = register;  // allows CommonJS/Node.js require()
+     module.exports = 
+     {
+       register,
+       login,
+     };
   }
   
