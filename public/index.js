@@ -34,62 +34,64 @@ function login(){
 
 function register(fName, lName, dob, email, password, cPassword){
   var returnMesage = "";
-  if(password == cPassword){
-    if(fName!= "" && lName != "" && dob != ""){
-      returnMesage = "success";
-      // window.alert("test1 ")
-      firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        // Signed in 
-        var user = userCredential.user.uid;
-        var rootRef = firebase.database().ref();
-        var usersRef = rootRef.child("users").child(user).child("details");
-        var userData = 
-        {
-          firstName: fName,
-          lastName: lName,
-          dateOfBirth: dob,
-          email: email,
-          availableMoney: 10000
-        };
-        usersRef.set(userData, function(error){
-          if(error){
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            
-            // window.alert("Message : " + errorMessage);
-          }
-          else{
-            // window.alert("test 3")
-          // returnMesage = "success";
-          // window.alert(returnMesage)
-          console.log("succ1")
-        returnMesage = "success";
-            window.location.href = "index.html";
-          }
+  if (password != "" && cPassword != ""){
+    if(password == cPassword){
+      if(fName!= "" && lName != "" && dob != "" && email!= ""){
+        // returnMesage = "success";
+        // window.alert("test1 ")
+        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+          // Signed in 
+          var user = userCredential.user.uid;
+          var rootRef = firebase.database().ref();
+          var usersRef = rootRef.child("users").child(user).child("details");
+          var userData = 
+          {
+            firstName: fName,
+            lastName: lName,
+            dateOfBirth: dob,
+            email: email,
+            availableMoney: 10000
+          };
+          usersRef.set(userData, function(error){
+            if(error){
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              
+              // window.alert("Message : " + errorMessage);
+            }
+            else{
+              // window.alert("test 3")
+            // returnMesage = "success";
+            // window.alert(returnMesage)
+              console.log("S")
+              // window.location.href = "index.html";
+            }
+          });
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log("F")
+          // window.alert(errorMessage)
+          // // ..
         });
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // window.alert(errorMessage)
-        // // ..
-      });
+      }
+      else{
+        returnMesage = "Please ensure all fields are filled";
+        // window.alert(returnMesage);
+      }
     }
     else{
-      returnMesage = "Please ensure all fields are filled";
-      // window.alert(returnMesage);
+      returnMesage = "Passwords do not match"
+      // window.alert("Passwords do not match.");
     }
+      return returnMesage;
+  }else{
+    return "Please ensure all fields are filled";
   }
-  else{
-    returnMesage = "Passwords do not match."
-    // window.alert("Passwords do not match.");
-  }
-  // if (returnMesage == ""){
-  //   returnMesage = "success"
-  // }
-  // window.alert(returnMesage)
-  return returnMesage;
 }
+ 
+
 
 function logout(){
   firebase.auth().signOut().then(function() {
