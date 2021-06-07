@@ -162,6 +162,7 @@ function cartToFirebase(productId){
 }
 
 function removeProduct(userUidAndCartId){ //seperated by #
+  // window.alert(userUidAndCartId)
   var arr =  userUidAndCartId.split("#");
   var userUid  = arr[0];
   var categoryProductId = arr[1];
@@ -169,8 +170,8 @@ function removeProduct(userUidAndCartId){ //seperated by #
 
   var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId);
   categotyProd.set(null);
-
-  window.location.href = "cart.html";
+  message = "success"
+  return message
 }
 
 function updateQuantity(userUidAndCartId){ //seperated by #
@@ -364,6 +365,7 @@ if (typeof module !== 'undefined' && module.exports) {
      {
        register,
        login,
+       removeProduct,
      };
   }
   
