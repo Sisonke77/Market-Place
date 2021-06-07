@@ -91,6 +91,12 @@
                     <a id="cart" onclick href="cart.html"></a>
                   </span>
                 </a>
+                <a href="" class="account-link">
+                  <i class="fa fa-th-list" aria-hidden="true"></i>
+                  <span >
+                    <a onclick="goToOrderHistory()" href="#">Order History</a>
+                  </span>
+                </a>
               </div>
             </div>
 
@@ -323,9 +329,7 @@
                   let img = document.createElement("img");
                   var storageRef = firebase.storage().ref(); 
 
-                  var idN = "/id" + j;
-
-                  storageRef.child('productCategory/'+categoryValue+ idN+ "/image0" + '.jpg').getDownloadURL().then(function(url) {
+                  storageRef.child('productCategory/'+categoryValue+ "/" + prodcutId + "/image0" + '.jpg').getDownloadURL().then(function(url) {
                       // img.src = "images/p1.png";
                       img.src = url;
                       img.alt = "";
@@ -349,7 +353,7 @@
                   let aAdd = document.createElement("button");
                   aAdd.className = "add_cart_btn";
                   aAdd.textContent = "Add To Cart";
-                  aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+j+")");
+                  aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+prodcutId.substring(2)+")");
 
                   
                   divImgBox.append(img);
@@ -388,7 +392,7 @@
                   
                   //get Picture icons for modal
                   let image = document.createElement("img"); 
-                  storageRef.child('productCategory/'+categoryValue+idN+ "/image0" + '.jpg').getDownloadURL().then(function(url) {
+                  storageRef.child('productCategory/'+categoryValue+ "/" + prodcutId + "/image0" + '.jpg').getDownloadURL().then(function(url) {
                       // img.src = "images/p1.png"; 
                       image.src = url;
                       image.alt = "";
@@ -425,9 +429,7 @@
                   }
                   // aAdd.setAttribute("onclick", "cartToFirebase("+categoryId+k+")");
 
-                  var categoryProdcutId =categoryId+j;
-                  btnModalAdd.setAttribute("onclick", "cartToFirebase("+categoryId+j+")");
-
+                  btnModalAdd.setAttribute("onclick", "cartToFirebase("+categoryId+prodcutId.substring(2)+")");
 
                   divModalB.append(image);
                   divModalB.append(pPrice);
