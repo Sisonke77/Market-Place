@@ -382,6 +382,7 @@ if (typeof module !== 'undefined' && module.exports) {
        removeProduct,
        checkoutDelevery,
        getCategoryAndProductId,
+       logout,
      };
   }
   

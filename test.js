@@ -10,6 +10,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var login = methods.login;
   var removeProduct = methods.removeProduct;
   var checkoutDelevery = methods.checkoutDelevery;
+  var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
 }
 
@@ -132,21 +133,33 @@ test('login("shlomdf@gmail.com", "123456") should return "logged"', function(ass
 
 //sprint 4
 
+//check out method 
 test('checkoutDelevery() should return "<option value="Herr" /><option value="Frau" />"', function(assert){
   var result = checkoutDelevery();
   var expected = '<option value="Herr" /><option value="Frau" />';
   assert.deepEqual(result, expected);
 });
 
+//used for checking out. Length = 4
 test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
   var result = getCategoryAndProductId(1000);
   var expected = ["Clothes",0];
   assert.deepEqual(result, expected);
 });
 
+//used for checking out. Length = 5
 test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert){
   var result = getCategoryAndProductId(20010);
   var expected = ["Food",10];
+  assert.deepEqual(result, expected);
+});
+
+//Logging out
+
+//test logging out
+test('logout should log user out', function(assert){
+  var result = logout();
+  var expected = undefined;
   assert.deepEqual(result, expected);
 });
 
