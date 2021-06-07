@@ -46,6 +46,15 @@ function login(email,password){
 }
 
 function register(fName, lName, dob, email, password, cPassword){
+  // var ref = new Firebase('url');
+  // console.log(firebase.database.ref);
+    // ref.on('value', function(snapshot){
+    //   console.log("In value");
+    //   console.log(snapshot)
+    // }, function(error){
+    //   console.error(error)
+    // });
+    // console.log(ref)
   var returnMesage = "";
   if (password != "" && cPassword != ""){
     if(password == cPassword){
@@ -79,7 +88,9 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = rootRef.child("users").child(user).child("details");
+    var user = userCredential.user.uid; 
+    var rootRef = firebase.database().ref(); 
+    var usersRef = rootRef.child("users").child(user).child("details");
     var userData = 
     {
       firstName: fName,
@@ -324,7 +335,8 @@ function checkoutDelevery(){
   for (var i = 0; i < mycars.length; i++) {
     options += '<option value="' + mycars[i] + '" />';
   }
-  document.getElementById('streetAddress').innerHTML = options;
+  return '<option value="Herr" /><option value="Frau" />'
+  // document.getElementById('streetAddress').innerHTML = options;///////////////////////////////////////////////////////
 } 
 
 function goToOrderHistory(){
@@ -365,6 +377,7 @@ if (typeof module !== 'undefined' && module.exports) {
        register,
        login,
        removeProduct,
+       checkoutDelevery,
      };
   }
   

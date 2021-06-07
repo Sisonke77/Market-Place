@@ -9,6 +9,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var register = methods.register;
   var login = methods.login;
   var removeProduct = methods.removeProduct;
+  var checkoutDelevery = methods.checkoutDelevery;
 }
 
 //Registration acceptance criteria 
@@ -69,6 +70,13 @@ test('register("1","1","1","fdsft43s@g987l.com","123456","123456")  should retur
   assert.deepEqual(result, expected); 
 });
 
+//all details are valid
+test('register("1","1","1","f87jhj@gfr.com","123456","123456")  should return ""', function(assert){
+  var result = register("1","1","1","f87jhj@gfr.com","123456","123456"); 
+  var expected = "";
+  assert.deepEqual(result, expected); 
+});
+
 
 //Login acceptance criteria
 
@@ -117,6 +125,15 @@ test('login("sds@ksdjh.gmail.com", "123456") should return "logged"', function(a
 test('login("shlomdf@gmail.com", "123456") should return "logged"', function(assert){
   var result = login("shlom0923@gmail.com", "123456");
   var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+
+
+//sprint 4
+
+test('checkoutDelevery() should return "<option value="Herr" /><option value="Frau" />"', function(assert){
+  var result = checkoutDelevery();
+  var expected = '<option value="Herr" /><option value="Frau" />';
   assert.deepEqual(result, expected);
 });
 
