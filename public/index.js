@@ -14,6 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
+
 function login(email,password){ 
   var message =""
   if (email == ""){
@@ -25,14 +26,19 @@ function login(email,password){
   if (email == "" && password ==""){
     message = "Please ensure all fields are filled";
   }
-  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
+  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+    var user = userCredential.user; 
+    window.location.href = "index.html";
+  })
   .catch((error) => {
     var errorMessage = error.message;
-    console.log(errorMessage);
     // window.alert(errorMessage)
-  });
+  }); 
+  // console.log(error.message)
+
+  // window.alert(message)
   if (message == ""){
-    return "error";
+    return "logged";
   }else{
     return message;
   }
@@ -67,12 +73,13 @@ function register(fName, lName, dob, email, password, cPassword){
   }
 }
 
+
 function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
+ 
+  
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    var user = userCredential.user.uid;
-    var rootRef = firebase.database().ref();
-    var usersRef = rootRef.child("users").child(user).child("details");
+    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = rootRef.child("users").child(user).child("details");
     var userData = 
     {
       firstName: fName,
@@ -89,10 +96,10 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
         // window.alert("Message : " + errorMessage);
       }
       else{
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
         // returnMesage = "success";
         // window.alert(returnMesage)
-        return "";
+        // return "";
       
         // 
       }
@@ -101,8 +108,9 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
+
     // window.alert(errorMessage);
-    return ""
+    // return ""
     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
   });

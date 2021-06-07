@@ -10,55 +10,66 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var login = methods.login;
 }
 
+//Registration acceptance criteria 
+
+//missing first name
 test('register("","1","1","1","1","1") should return "Please ensure all fields are filled"', function(assert){
   var result = register("","1","1","1","1","1"); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//missing last name
 test('register("1","","1","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
   var result = register("1","","1","1","1","1"); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//missing date of birth
 test('register("1","1","","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
   var result = register("1","1","","1","1","1"); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//missing email
 test('register("1","1","1","","1","1") should return "Please ensure all fields are filled"', function(assert){
   var result = register("1","1","1","","1","1"); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//missing password
 test('register("1","1","1","1","","1")  should return "Please ensure all fields are filled"', function(assert){
   var result = register("1","1","1","1","","1"); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//missing confirmed password
 test('register("1","1","1","1","1","")  should return "Please ensure all fields are filled"', function(assert){
   var result = register("1","1","1","1","1",""); 
   var expected = "Please ensure all fields are filled";
   assert.deepEqual(result, expected); 
 });
 
+//passwords given but do not match
 test('register("1","1","1","1","114543","128787")  should return "Passwords do not match"', function(assert){
   var result = register("1","1","1","1","114543","128787"); 
   var expected = "Passwords do not match";
   assert.deepEqual(result, expected); 
 });
 
-test('register("1","1","1","fdsft43s@","123456","123456")  should return ""', function(assert){
-  var result = register("1","1","1","a1sdfdsa@4ji","123456","123456"); 
+//all details given but email address is already on the system
+test('register("1","1","1","fdsft43s@g987l.com","123456","123456")  should return ""', function(assert){
+  var result = register("1","1","1","fdsft43s@jhggl.com","123456","123456"); 
   var expected = "";
   assert.deepEqual(result, expected); 
 });
 
-//testing missing input
+
+//Login acceptance criteria
 
 //email missing, password given
 test('login("", "123456") should return "Please ensure all fields are filled"', function(assert){
@@ -81,10 +92,30 @@ test('login("", "") should return "Please ensure all fields are filled"', functi
   assert.deepEqual(result, expected);
 });
 
+//test incorrect email format with @ but with out dot after @
+test('login("sds@", "123456") should return "logged"', function(assert){
+  var result = login("sds@", "123456");
+  var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+//test incorrect email format without @
+test('login("sdsksdjh.gmail.com", "123456") should return "logged"', function(assert){
+  var result = login("sdsksdjh.gmail.com", "123456");
+  var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+
 //test valid input that DNE in the DB
-test('login("sds@ksdjh.gmail.com", "123456") should return "error"', function(assert){
+test('login("sds@ksdjh.gmail.com", "123456") should return "logged"', function(assert){
   var result = login("sds@ksdjh.gmail.com", "123456");
-  var expected = "error";
+  var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+
+//test valid and existing login
+test('login("shlomdf@gmail.com", "123456") should return "logged"', function(assert){
+  var result = login("shlom0923@gmail.com", "123456");
+  var expected = "logged";
   assert.deepEqual(result, expected);
 });
 
