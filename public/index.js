@@ -27,16 +27,18 @@ function login(email,password){
     message = "Please ensure all fields are filled";
   }
   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-    var user = userCredential.user; window.location.href = "index.html";
+    var user = userCredential.user; 
+    window.location.href = "index.html";
   })
   .catch((error) => {
     var errorMessage = error.message;
     // window.alert(errorMessage)
   }); 
+  // console.log(error.message)
 
-
+  // window.alert(message)
   if (message == ""){
-    return "";
+    return "logged";
   }else{
     return message;
   }

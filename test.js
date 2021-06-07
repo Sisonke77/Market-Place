@@ -92,17 +92,30 @@ test('login("", "") should return "Please ensure all fields are filled"', functi
   assert.deepEqual(result, expected);
 });
 
+//test incorrect email format with @ but with out dot after @
+test('login("sds@", "123456") should return "logged"', function(assert){
+  var result = login("sds@", "123456");
+  var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+//test incorrect email format without @
+test('login("sdsksdjh.gmail.com", "123456") should return "logged"', function(assert){
+  var result = login("sdsksdjh.gmail.com", "123456");
+  var expected = "logged";
+  assert.deepEqual(result, expected);
+});
+
 //test valid input that DNE in the DB
-test('login("sds@ksdjh.gmail.com", "123456") should return ""', function(assert){
+test('login("sds@ksdjh.gmail.com", "123456") should return "logged"', function(assert){
   var result = login("sds@ksdjh.gmail.com", "123456");
-  var expected = "";
+  var expected = "logged";
   assert.deepEqual(result, expected);
 });
 
 //test valid and existing login
-test('login("shlomdf@gmail.com", "123456") should return ""', function(assert){
+test('login("shlomdf@gmail.com", "123456") should return "logged"', function(assert){
   var result = login("shlom0923@gmail.com", "123456");
-  var expected = "";
+  var expected = "logged";
   assert.deepEqual(result, expected);
 });
 
