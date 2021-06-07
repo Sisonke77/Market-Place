@@ -156,13 +156,14 @@
                 shopping_cart.append(divCartTitle);
                 for (var categoryId in orderHistoryObject[orderHistoryId]){
                     if (categoryId == "totalCartPrice"){
-                        // console.log(true);
                         var total_cart_price = orderHistoryObject[orderHistoryId][categoryId];
                     }
                     else if (categoryId == "addressDetails"){
-                        // get address
-                        // console.log(true);
-                        // var total_cart_price = orderHistoryObject[orderHistoryId][categoryId];
+                        var city = orderHistoryObject[orderHistoryId][categoryId].city;
+                        var postal_code = orderHistoryObject[orderHistoryId][categoryId].postalCode;
+                        var province = orderHistoryObject[orderHistoryId][categoryId].province;
+                        var street_address = orderHistoryObject[orderHistoryId][categoryId].streetAddress;
+                        var suburb = orderHistoryObject[orderHistoryId][categoryId].suburb;
                     }
                     else if (categoryId != "totalCartPrice" && categoryId != "addressDetails" ){
                         var category = orderHistoryObject[orderHistoryId][categoryId].category;
@@ -244,7 +245,7 @@
                 shopping_cart.append(divAddress);
 
                 let divAddressValue = document.createElement("h4");
-                divAddressValue.textContent = "Some address";
+                divAddressValue.textContent = street_address +", "+ suburb +", "+ city +", "+ province +", "+ postal_code;
                 shopping_cart.append(divAddressValue);
 
                 shopping_cart.append(divDashes);
