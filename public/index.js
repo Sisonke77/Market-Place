@@ -86,7 +86,7 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
       lastName: lName,
       dateOfBirth: dob,
       email: email,
-      availableMoney: 10000
+      availableMoney: 100000
     };
     usersRef.set(userData, function(error){
       if(error){
