@@ -16,8 +16,6 @@ firebase.auth.Auth.Persistence.LOCAL;
 
 
 function login(email,password){ 
-  var testing= []; 
-
   var message =""
   if (email == ""){
     message = "Please ensure all fields are filled";
@@ -29,20 +27,14 @@ function login(email,password){
     message = "Please ensure all fields are filled";
   }
   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-    // window.alert("testing")
-    testing.push("Sucess")
-    // console.log(testing)
     var user = userCredential.user; window.location.href = "index.html";
   })
   .catch((error) => {
     var errorMessage = error.message;
-    testing.push(errorMessage)
-    // console.log(testing)
-    // console.log(errorMessage);
     // window.alert(errorMessage)
   }); 
-  // console.log(testing.length)
-  console.log(testing)
+
+
   if (message == ""){
     return "";
   }else{
