@@ -12,6 +12,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var checkoutDelevery = methods.checkoutDelevery;
   var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
+  var checkoutOpen = methods.checkoutOpen;
 }
 
 //Registration acceptance criteria 
@@ -163,6 +164,12 @@ test('logout should log user out', function(assert){
   assert.deepEqual(result, expected);
 });
 
+// //test checkoutOpen
+// test('checkout open', function(assert){
+//   var result = checkoutOpen();
+//   var expected = undefined;
+//   assert.deepEqual(result, expected);
+// });
 
 
 

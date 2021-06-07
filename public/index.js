@@ -206,6 +206,7 @@ function checkout(){
 }
 
 function checkoutOpen(){
+  // var firebase = require('firebase');
   //update price
   firebase.auth().onAuthStateChanged(function(user){
     var userUid = user.uid;
@@ -247,7 +248,7 @@ function checkoutOpen(){
       }
       // window.alert(totalCartPrice);
       dbRef.child("users").child(userUid).child("cart").child("totalCartPrice").set(totalCartPrice);
-      document.getElementById("totalPrice").innerHTML = "R"+totalCartPrice;
+      // document.getElementById("totalPrice").innerHTML = "R"+totalCartPrice;
     });
   });
 }
@@ -383,6 +384,7 @@ if (typeof module !== 'undefined' && module.exports) {
        checkoutDelevery,
        getCategoryAndProductId,
        logout,
+       checkoutOpen,
      };
   }
   
