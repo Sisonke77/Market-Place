@@ -120,13 +120,6 @@ test('login("shlomdf@gmail.com", "123456") should return "logged"', function(ass
   assert.deepEqual(result, expected);
 });
 
-//remove product from database
-test('removeProduct("FRXnIpiu55ZTDoDbD8DXdBFV21F3#Clothes_id1") should remove product and return success"', function(assert){
-  var result = removeProduct("FRXnIpiu55ZTDoDbD8DXdBFV21F3#Clothes_id1");
-  var expected = "success";
-  assert.deepEqual(result, expected);
-});
-
 //passwords matching
 //  test('passwordsEqual(12, 12) should return true', function(assert) {
 //   var result = passwordsEqual(12, 12);
