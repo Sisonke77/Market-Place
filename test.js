@@ -10,6 +10,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var login = methods.login;
   var removeProduct = methods.removeProduct;
   var checkoutDelevery = methods.checkoutDelevery;
+  var getCategoryAndProductId = methods.getCategoryAndProductId;
 }
 
 //Registration acceptance criteria 
@@ -136,6 +137,20 @@ test('checkoutDelevery() should return "<option value="Herr" /><option value="Fr
   var expected = '<option value="Herr" /><option value="Frau" />';
   assert.deepEqual(result, expected);
 });
+
+test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
+  var result = getCategoryAndProductId(1000);
+  var expected = ["Clothes",0];
+  assert.deepEqual(result, expected);
+});
+
+test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert){
+  var result = getCategoryAndProductId(20010);
+  var expected = ["Food",10];
+  assert.deepEqual(result, expected);
+});
+
+
 
 
 

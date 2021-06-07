@@ -137,14 +137,18 @@ function logout(){
 }
 
 function getCategoryAndProductId(productId){
+  // window.alert(productId)
+  // 1001
   arr = [1, 2, 3, 4, 5];
   categoryArray = ["Clothes", "Food", "Games", "Sports", "Technology"];
   for(var i=0; i<categoryArray.length; i++){
     if(productId.toString().charAt(0) == arr[i]){
       if(productId.toString().length == 4){
+        // window.alert([categoryArray[i], (productId-(i+1)*1000)])
         return [categoryArray[i], (productId-(i+1)*1000)];
       }
       else if(productId.toString().length == 5){
+        // window.alert([categoryArray[i], (productId-(i+1)*10000)])
         return [categoryArray[i], (productId-(i+1)*10000)];
       }
     }
@@ -177,10 +181,10 @@ function removeProduct(userUidAndCartId){ //seperated by #
   var userUid  = arr[0];
   var categoryProductId = arr[1];
   const rootRef = firebase.database().ref();
-
   var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId);
   categotyProd.set(null);
   window.location.href = "cart.html";
+
 }
 
 function updateQuantity(userUidAndCartId){ //seperated by #
@@ -334,7 +338,7 @@ function checkoutDelevery(){
   for (var i = 0; i < mycars.length; i++) {
     options += '<option value="' + mycars[i] + '" />';
   }
-  return '<option value="Herr" /><option value="Frau" />'
+  return options
   // document.getElementById('streetAddress').innerHTML = options;///////////////////////////////////////////////////////
 } 
 
@@ -377,6 +381,7 @@ if (typeof module !== 'undefined' && module.exports) {
        login,
        removeProduct,
        checkoutDelevery,
+       getCategoryAndProductId,
      };
   }
   
