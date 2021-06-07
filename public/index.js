@@ -32,11 +32,11 @@ function login(email,password){
   })
   .catch((error) => {
     var errorMessage = error.message;
-    // window.alert(errorMessage)
+    // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
   }); 
   // console.log(error.message)
 
-  // window.alert(message)
+  // window.alert(message)///////////////////////////////////////////////////////////////////////////////
   if (message == ""){
     return "logged";
   }else{
@@ -65,17 +65,17 @@ function register(fName, lName, dob, email, password, cPassword){
       else{
         returnMesage = "Please ensure all fields are filled";
         // document.getElementById('errorLbl').innerHTML = returnMesage;
-        // window.alert(returnMesage);
+        // window.alert(returnMesage);///////////////////////////////////////////////////////////////////////////////
       }
     }
     else{
       returnMesage = "Passwords do not match"
-      // document.getElementById('errorLbl').innerHTML = returnMesage;
-      // window.alert(returnMesage);
+      // document.getElementById('errorLbl').innerHTML = returnMesage;///////////////////////////////////////////////////////////////////////////////
+      // window.alert(returnMesage);///////////////////////////////////////////////////////////////////////////////
     }
       return returnMesage;
   }else{
-    // window.alert("Please ensure all fields are filled");
+    // window.alert("Please ensure all fields are filled");///////////////////////////////////////////////////////////////////////////////
     returnMesage = "Please ensure all fields are filled";
     // document.getElementById('errorLbl').innerHTML = returnMesage;
     return returnMesage;
@@ -88,9 +88,8 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    var user = userCredential.user.uid; 
-    var rootRef = firebase.database().ref(); 
-    var usersRef = rootRef.child("users").child(user).child("details");
+    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = 
+    rootRef.child("users").child(user).child("details");
     var userData = 
     {
       firstName: fName,
@@ -104,12 +103,12 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
         var errorCode = error.code;
         var errorMessage = error.message;
         // document.getElementById('errorLbl').innerHTML = errorMessage;
-        // window.alert("Message : " + errorMessage);
+        // window.alert("Message : " + errorMessage);///////////////////////////////////////////////////////////////////////////////
       }
       else{
         // window.location.href = "index.html";
         // returnMesage = "success";
-        // window.alert(returnMesage)
+        // window.alert(returnMesage)///////////////////////////////////////////////////////////////////////////////
         // return "";
       
         // 
@@ -120,7 +119,7 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
     var errorCode = error.code;
     var errorMessage = error.message;
 
-    // window.alert(errorMessage);
+    // window.alert(errorMessage);///////////////////////////////////////////////////////////////////////////////
     // return ""
     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
     // // ..
