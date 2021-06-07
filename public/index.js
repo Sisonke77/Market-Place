@@ -14,8 +14,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-var testing= ["9"]; 
+
 function login(email,password){ 
+  var testing= []; 
+
   var message =""
   if (email == ""){
     message = "Please ensure all fields are filled";
@@ -26,22 +28,28 @@ function login(email,password){
   if (email == "" && password ==""){
     message = "Please ensure all fields are filled";
   }
-  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {var user = userCredential.user; window.location.href = "index.html";})
+  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+    // window.alert("testing")
+    testing.push("Sucess")
+    // console.log(testing)
+    var user = userCredential.user; window.location.href = "index.html";
+  })
   .catch((error) => {
     var errorMessage = error.message;
+    testing.push(errorMessage)
+    // console.log(testing)
     // console.log(errorMessage);
     // window.alert(errorMessage)
   }); 
-  
+  // console.log(testing.length)
+  console.log(testing)
   if (message == ""){
-    return "error";
+    return "";
   }else{
     return message;
   }
   
 }
-
-
 
 function register(fName, lName, dob, email, password, cPassword){
   var returnMesage = "";
@@ -90,7 +98,6 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
       if(error){
         var errorCode = error.code;
         var errorMessage = error.message;
-        arr.push(errorMessage);
         // document.getElementById('errorLbl').innerHTML = errorMessage;
         // window.alert("Message : " + errorMessage);
       }
