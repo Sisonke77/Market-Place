@@ -8,6 +8,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var methods = require('./public/index.js');
   var register = methods.register;
   var login = methods.login;
+  var removeProduct = methods.removeProduct;
 }
 
 //Registration acceptance criteria 
@@ -118,8 +119,6 @@ test('login("shlomdf@gmail.com", "123456") should return "logged"', function(ass
   var expected = "logged";
   assert.deepEqual(result, expected);
 });
-
-
 
 //passwords matching
 //  test('passwordsEqual(12, 12) should return true', function(assert) {
