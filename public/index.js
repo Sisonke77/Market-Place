@@ -195,7 +195,7 @@ function updateQuantity(userUidAndCartId, firebase){ //seperated by #
   var categoryProductId = arr[1];
   // window.alert(userUidAndCartId);
   // var quantityInput = document.getElementById(categoryProductId).value;
-  var x = isTerminal(window); 
+  // var x = isTerminal(window); 
   var quantityInput = 6;
   const rootRef = firebase.database().ref();
   var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId).child("quantity");
@@ -384,15 +384,15 @@ function init(){
   });
 }
 
-function isTerminal(object){
-  if (typeof object !== 'undefined'){ //Window is defined therefore is not a terinal
-    window.alert("Window is defined")
-    return false;
-  }else{ //window is not defined therefore is a terinal
-    console.log("Window is not defined")
-    return true;
-  }
-}
+// function isTerminal(object){
+//   if (typeof object !== 'undefined'){ //Window is defined therefore is not a terinal
+//     window.alert("Window is defined")
+//     return false;
+//   }else{ //window is not defined therefore is a terinal
+//     console.log("Window is not defined")
+//     return true;
+//   }
+// }
 
 
 if (typeof module !== 'undefined' && module.exports) {
