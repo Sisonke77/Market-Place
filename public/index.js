@@ -28,6 +28,7 @@ function login(email,password){
   }
   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
     var user = userCredential.user; 
+    window.alert(user)
     window.location.href = "index.html";
   })
   .catch((error) => {
@@ -88,8 +89,9 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
   
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in 
-    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = 
-    rootRef.child("users").child(user).child("details");
+    var user = userCredential.user.uid; 
+    var rootRef = firebase.database().ref(); 
+    var usersRef = rootRef.child("users").child(user).child("details");
     var userData = 
     {
       firstName: fName,
@@ -191,13 +193,14 @@ function updateQuantity(userUidAndCartId){ //seperated by #
   var arr =  userUidAndCartId.split("#");
   var userUid  = arr[0];
   var categoryProductId = arr[1];
-  var quantityInput = document.getElementById(categoryProductId).value;
-
+  // window.alert(userUidAndCartId);
+  // var quantityInput = document.getElementById(categoryProductId).value;
+  var quantityInput = 5;
   const rootRef = firebase.database().ref();
   var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId).child("quantity");
   categotyProd.set(quantityInput);
-
-  window.location.href = "cart.html";
+  console.log("update complete?")
+  // window.location.href = "cart.html";
 
 }
 
@@ -385,6 +388,7 @@ if (typeof module !== 'undefined' && module.exports) {
        getCategoryAndProductId,
        logout,
        checkoutOpen,
+       updateQuantity,
      };
   }
   

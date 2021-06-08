@@ -13,6 +13,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
   var checkoutOpen = methods.checkoutOpen;
+  var updateQuantity = methods.updateQuantity;
 }
 
 //Registration acceptance criteria 
@@ -163,6 +164,28 @@ test('logout should log user out', function(assert){
   var expected = undefined;
   assert.deepEqual(result, expected);
 });
+
+var firebase = require('firebase');
+  var email = "shlomo@brill.com";
+  var password = "123456";
+  var uID = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2";
+  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+    var user = userCredential.user; 
+    console.log("logged in")
+    // window.location.href = "index.html";
+  })
+  .catch((error) => {
+    var errorMessage = error.message;
+    console.log("error " + errorMessage)
+    // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+  }); 
+test('logout should log user out', function(assert){
+  var userUidAndCartId = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2#Clothes_id0";
+  var result = updateQuantity(userUidAndCartId);
+  var expected = undefined;
+  assert.deepEqual(result, expected);
+});
+
 
 // //test checkoutOpen
 // test('checkout open', function(assert){
