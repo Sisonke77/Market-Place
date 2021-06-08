@@ -181,7 +181,7 @@ var firebase = require('firebase');
   }); 
 test('logout should log user out', function(assert){
   var userUidAndCartId = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2#Clothes_id0";
-  var result = updateQuantity(userUidAndCartId);
+  var result = updateQuantity(userUidAndCartId, firebase);
   var expected = undefined;
   assert.deepEqual(result, expected);
 });

@@ -189,19 +189,20 @@ function removeProduct(userUidAndCartId){ //seperated by #
 
 }
 
-function updateQuantity(userUidAndCartId){ //seperated by #
+function updateQuantity(userUidAndCartId, firebase){ //seperated by #
   var arr =  userUidAndCartId.split("#");
   var userUid  = arr[0];
   var categoryProductId = arr[1];
   // window.alert(userUidAndCartId);
   // var quantityInput = document.getElementById(categoryProductId).value;
-  var quantityInput = 5;
+  var quantityInput = 6;
   const rootRef = firebase.database().ref();
   var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId).child("quantity");
   categotyProd.set(quantityInput);
-  console.log("update complete?")
   // window.location.href = "cart.html";
-
+  setTimeout((function() {  
+    return process.exit(1);
+  }), 5000);
 }
 
 function checkout(){ 
