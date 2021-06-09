@@ -207,9 +207,9 @@ function updateQuantity(userUidAndCartId, firebase){ //seperated by #
   // if (window !== undefined) {
   //   window.location.href = "cart.html";
   // }
-  setTimeout((function() {  
-    return process.exit(0);
-  }), 5000);
+  // setTimeout((function() {  
+  //   return process.exit(0);
+  // }), 5000);
 }
 
 function checkout(){ 

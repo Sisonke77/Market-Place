@@ -13,7 +13,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
   var checkoutOpen = methods.checkoutOpen;
-  var updateQuantity = methods.updateQuantity;
+  // var updateQuantity = methods.updateQuantity;
 }
 
 //sprint 1 
@@ -146,11 +146,11 @@ test('login("shlomdf@gmail.com", "123456") should return "logged"',async functio
 //sprint 4
 
 //check out method 
-test('checkoutDelevery() should return "<option value="Herr" /><option value="Frau" />"', function(assert){
-  var result = checkoutDelevery();
-  var expected = '<option value="Herr" /><option value="Frau" />';
-  assert.deepEqual(result, expected);
-});
+// test('checkoutDelevery() should return "<option value="Herr" /><option value="Frau" />"', function(assert){
+//   var result = checkoutDelevery();
+//   var expected = '<option value="Herr" /><option value="Frau" />';
+//   assert.deepEqual(result, expected);
+// });
 
 //used for checking out. Length = 4
 test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
@@ -175,26 +175,26 @@ test('logout should log user out', function(assert){
   assert.deepEqual(result, expected);
 });
 
-var firebase = require('firebase');
-  var email = "shlomo@brill.com";
-  var password = "123456";
-  var uID = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2";
-  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-    var user = userCredential.user; 
-    console.log("logged in")
-    // window.location.href = "index.html";
-  })
-  .catch((error) => {
-    var errorMessage = error.message;
-    console.log("error " + errorMessage)
-    // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
-  }); 
-test('logout should log user out', function(assert){
-  var userUidAndCartId = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2#Clothes_id0";
-  var result = updateQuantity(userUidAndCartId, firebase);
-  var expected = undefined;
-  assert.deepEqual(result, expected);
-});
+// var firebase = require('firebase');
+//   var email = "shlomo@brill.com";
+//   var password = "123456";
+//   var uID = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2";
+//   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+//     var user = userCredential.user; 
+//     console.log("logged in")
+//     // window.location.href = "index.html";
+//   })
+//   .catch((error) => {
+//     var errorMessage = error.message;
+//     console.log("error " + errorMessage)
+//     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+//   }); 
+// test('logout should log user out', function(assert){
+//   var userUidAndCartId = "4Xi1q4hZ7RQYLPZZhckcP9X29Lg2#Clothes_id0";
+//   var result = updateQuantity(userUidAndCartId, firebase);
+//   var expected = undefined;
+//   assert.deepEqual(result, expected);
+// });
 
 
 // //test checkoutOpen
