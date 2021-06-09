@@ -87,60 +87,60 @@ test('register("1","1","1","f87jhj@gfr.com","123456","123456")  should return ""
 //Login acceptance criteria
 
 //email missing, password given
-test('login("", "123456") should return "fail"', async function(assert){
-  var result = await login("", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// test('login("", "123456") should return "fail"', async function(assert){
+//   var result = await login("", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//valid email given, passwrod missing
-test('login("shlomo@brill.com", "") should return "fail"', async function(assert){
-  var result = await login("shlomo@brill.com", "");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //valid email given, passwrod missing
+// test('login("shlomo@brill.com", "") should return "fail"', async function(assert){
+//   var result = await login("shlomo@brill.com", "");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//email and password missing
-test('login("", "") should return "fail"', async function(assert){
-  var result = await login("", "");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //email and password missing
+// test('login("", "") should return "fail"', async function(assert){
+//   var result = await login("", "");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid passwoed but incorrect email format with @ but without dot after @ 
-test('login("sds@jjhg", "123456") should return "fail"', async function(assert){
-  var result = await login("sds@jhg", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test valid passwoed but incorrect email format with @ but without dot after @ 
+// test('login("sds@jjhg", "123456") should return "fail"', async function(assert){
+//   var result = await login("sds@jhg", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test incorrect email format without @ and with valid password
-test('login("sdsksdjh.gmail.com", "123456") should return "fail"', async function(assert){
-  var result = await login("sdsksdjh.gmail.com", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test incorrect email format without @ and with valid password
+// test('login("sdsksdjh.gmail.com", "123456") should return "fail"', async function(assert){
+//   var result = await login("sdsksdjh.gmail.com", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid input that DNE in the DB
-test('login("sdkjhs@gmail.com", "123456") should return "fail"',async function(assert){
-  var result = await login("sdkjhs@gmail.com", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test valid input that DNE in the DB
+// test('login("sdkjhs@gmail.com", "123456") should return "fail"',async function(assert){
+//   var result = await login("sdkjhs@gmail.com", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test with valid email that exists but password with 5 chracters
-test('login("shlomo@brill.com", "12345") should return "fail"',async function(assert){
-  var result = await login("shlomo@brill.com", "12345");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test with valid email that exists but password with 5 chracters
+// test('login("shlomo@brill.com", "12345") should return "fail"',async function(assert){
+//   var result = await login("shlomo@brill.com", "12345");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid and existing login - test 1
-test('login("shlomdf@gmail.com", "123456") should return "logged"',async function(assert){
-  var result = await login("shlom0923@gmail.com", "123456");
-  var expected = "success";
-  assert.deepEqual(result, expected);
-});
+// //test valid and existing login - test 1
+// test('login("shlomdf@gmail.com", "123456") should return "logged"',async function(assert){
+//   var result = await login("shlom0923@gmail.com", "123456");
+//   var expected = "success";
+//   assert.deepEqual(result, expected);
+// });
 
 
 //sprint 4
