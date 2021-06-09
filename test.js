@@ -108,7 +108,7 @@ test('login("", "") should return "fail"', async function(assert){
 });
 
 //test valid passwoed but incorrect email format with @ but without dot after @ 
-test('login("sds@jhg", "123456") should return "fail"', async function(assert){
+test('login("sds@jjhg", "123456") should return "fail"', async function(assert){
   var result = await login("sds@jhg", "123456");
   var expected = "fail";
   assert.deepEqual(result, expected);
