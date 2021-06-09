@@ -15,35 +15,36 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
 
-function login(email,password){ 
-  var message =""
-  if (email == ""){
-    message = "Please ensure all fields are filled";
-  }
-  if (password == ""){
-    message = "Please ensure all fields are filled";
-  }
-  if (email == "" && password ==""){
-    message = "Please ensure all fields are filled";
-  }
-  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-    var user = userCredential.user; 
-    window.alert(user)
-    window.location.href = "index.html";
+async function login(email,password){ 
+  var message;
+  // if (email == ""){
+  //   message = "Please ensure all fields are filled";
+  // }
+  // if (password == ""){
+  //   message = "Please ensure all fields are filled";
+  // }
+  // if (email == "" && password ==""){
+  //   message = "Please ensure all fields are filled";
+  // }
+  await firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+    var user = userCredential.user;
+    message = "success" 
+    // window.alert(user)
+    // window.location.href = "index.html";
   })
   .catch((error) => {
-    var errorMessage = error.message;
+    message = "fail"
     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
   }); 
   // console.log(error.message)
-
+  console.log(message)
+  return message; 
   // window.alert(message)///////////////////////////////////////////////////////////////////////////////
-  if (message == ""){
-    return "logged";
-  }else{
-    return message;
-  }
-  
+  // if (message == ""){
+  //   return "logged";
+  // }else{
+  //   return message;
+  // }
 }
 
 function register(fName, lName, dob, email, password, cPassword){
