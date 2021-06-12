@@ -14,50 +14,112 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-//registration function 
 function register(fName, lName, dob, email, password, cPassword){
-  if (password != "" && cPassword != ""){
-    if(password == cPassword){
-      if(fName!= "" && lName != "" && dob != "" && email!= ""){
-        createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
-        return ""; 
+   return new Promise( resolve => {
+    var returnMesage = "";
+    if (password != "" && cPassword != ""){
+      if(password == cPassword){
+        if(fName!= "" && lName != "" && dob != "" && email!= ""){
+            firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+              // Signed in 
+              var user = userCredential.user.uid; 
+              var rootRef = firebase.database().ref(); 
+              var usersRef = rootRef.child("users").child(user).child("details");
+              var userData = 
+              {
+                firstName: fName,
+                lastName: lName,
+                dateOfBirth: dob,
+                email: email,
+                availableMoney: 100000
+              };
+              usersRef.set(userData, function(error){
+                if(error){
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  // window.alert("Message : " + errorMessage);
+                }
+                else{
+                  // window.location.href = "index.html";
+                  // returnMesage = "success";
+                  // window.alert(returnMesage)
+                  // return "";
+                
+                  // 
+                }
+              });
+            })
+            .catch((error) => {
+              // var errorCode = error.code;
+              // var errorMessage = error.message;
+          
+              // window.alert(errorMessage);
+              // return ""
+              // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
+              // // ..
+            });
+            // return ""; 
+              // returnMesage = "Please ensure all fields are filled";
+                // document.getElementById('errorLbl').innerHTML = returnMesage;
+                // window.alert(returnMesage); 
+          // return ""; 
+        }
+        else{
+          returnMesage = "Ensure all fields are filled";
+          message = print(returnMesage);
+          resolve(message);
+        }
       }
       else{
-        returnMesage = "Please ensure all fields are filled";
-        // document.getElementById('errorLbl').innerHTML = returnMesage;
-        // window.alert(returnMesage);
+        returnMesage = "Passwords do not match. Please try again."
+        message = print(returnMesage);
+        resolve(message);
       }
+    }else{
+      returnMesage = "Enter both passwords";
+      message = print(returnMesage);
+      resolve(message);
     }
-    else{
-      returnMesage = "Passwords do not match"
-      // document.getElementById('errorLbl').innerHTML = returnMesage;
-      // window.alert(returnMesage);
-    }
-      return returnMesage;
-  }else{
-    // window.alert("Please ensure all fields are filled");
-    returnMesage = "Please ensure all fields are filled";
-    // document.getElementById('errorLbl').innerHTML = returnMesage;
-    return returnMesage;
-  }
+  }); 
 }
+//registration function 
+// function login(email,password) {
+//   return new Promise( resolve => {
+//     var message;
+//     firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+//       // var user = userCredential.user;
+//       message = "success" 
+//       resolve(message);
+//       // window.alert(user)
+//       // window.location.href = "index.html";
+//     })
+//     .catch((error) => {
+//       message = error.message
+//       print(message)
+//       resolve(message);
+//       // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+//     }); 
+//   });
+// }
+  
+
 
 function login(email,password) {
   return new Promise( resolve => {
     var message;
-      firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-        // var user = userCredential.user;
-        message = "success" 
-        resolve(message);
-        // window.alert(user)
-        // window.location.href = "index.html";
-      })
-      .catch((error) => {
-        message = error.message
-        print(message)
-        resolve(message);
-        // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
-      }); 
+    firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+      // var user = userCredential.user;
+      message = "success" 
+      resolve(message);
+      // window.alert(user)
+      // window.location.href = "index.html";
+    })
+    .catch((error) => {
+      message = error.message
+      print(message)
+      resolve(message);
+      // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+    }); 
   });
 }
 
@@ -91,48 +153,47 @@ function login(email,password) {
 // }
 
 
-function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
- 
-  
-  firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-    // Signed in 
-    var user = userCredential.user.uid; var rootRef = firebase.database().ref(); var usersRef = rootRef.child("users").child(user).child("details");
-    var userData = 
-    {
-      firstName: fName,
-      lastName: lName,
-      dateOfBirth: dob,
-      email: email,
-      availableMoney: 100000
-    };
-    usersRef.set(userData, function(error){
-      if(error){
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // document.getElementById('errorLbl').innerHTML = errorMessage;
-        // window.alert("Message : " + errorMessage);
-      }
-      else{
-        // window.location.href = "index.html";
-        // returnMesage = "success";
-        // window.alert(returnMesage)
-        // return "";
+// function createAccountInFirebase(fName, lName, dob, email, password, cPassword){  
+//   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+//     // Signed in 
+//     var user = userCredential.user.uid; var rootRef = firebase.database().ref(); 
+//     var usersRef = rootRef.child("users").child(user).child("details");
+//     var userData = 
+//     {
+//       firstName: fName,
+//       lastName: lName,
+//       dateOfBirth: dob,
+//       email: email,
+//       availableMoney: 100000
+//     };
+//     usersRef.set(userData, function(error){
+//       if(error){
+//         var errorCode = error.code;
+//         var errorMessage = error.message;
+//         // document.getElementById('errorLbl').innerHTML = errorMessage;
+//         // window.alert("Message : " + errorMessage);
+//       }
+//       else{
+//         // window.location.href = "index.html";
+//         // returnMesage = "success";
+//         // window.alert(returnMesage)
+//         // return "";
       
-        // 
-      }
-    });
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
+//         // 
+//       }
+//     });
+//   })
+//   .catch((error) => {
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
 
-    // window.alert(errorMessage);
-    // return ""
-    // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
-    // // ..
-  });
-  // return ""; 
-}
+//     // window.alert(errorMessage);
+//     // return ""
+//     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
+//     // // ..
+//   });
+//   // return ""; 
+// }
 
 
 function logout(){
@@ -469,6 +530,7 @@ function print(message){
   if (typeof window !== 'undefined') {
     window.alert(message)
   }
+  return message;
 }
 
 if (typeof module !== 'undefined' && module.exports) {

@@ -14,12 +14,56 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 // If there exist an input field that is left empty, 
 // I will get an error message and I will remain in the registration page.
 
-// QUnit.test( 'register("","xyz","17-22-2000","shlomo@brill.com","123456","123456") should return "fail"', assert => {
-//   return register("","xyz","17-22-2000","shlomo@brill.com","123456","123456").then( result => {
-//     assert.equal( result, "fail");
-//   });
-// });
+//first password is not given but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","shlomo@brill.com","","123456") should return "Enter both password"', assert => {
+  return register("abc","xyz","17-22-2000","shlomo@brill.com","","123456").then( result => {
+    assert.equal( result, "Enter both passwords");
+  });
+});
 
+//second password is not given but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","shlomo@brill.com","123456","") should return "Enter both password"', assert => {
+  return register("abc","xyz","17-22-2000","shlomo@brill.com","123456","").then( result => {
+    assert.equal( result, "Enter both passwords");
+  });
+});
+
+//all valid details are given but passwords do not match
+QUnit.test( 'register("first name","last name","17-22-2000","shlomo@brill.com","123456","123455") should return "Passwords do not match. Please try again."', assert => {
+  return register("first name","last name","17-22-2000","shlomo@brill.com","123456","123455").then( result => {
+    assert.equal( result, "Passwords do not match. Please try again.");
+  });
+});
+
+//first name is not given but all other inputs are valid
+QUnit.test( 'register("","last name","17-22-2000","shlomo@brill.com","123456","123456") should return "Ensure all fields are filled"', assert => {
+  return register("","last name","17-22-2000","shlomo@brill.com","123456","123456").then( result => {
+    assert.equal( result, "Ensure all fields are filled");
+  });
+});
+
+//last name is not given but all other inputs are valid
+QUnit.test( 'register("first name","","17-22-2000","shlomo@brill.com","123456","123456") should return "Ensure all fields are filled"', assert => {
+  return register("first name","","17-22-2000","shlomo@brill.com","123456","123456").then( result => {
+    assert.equal( result, "Ensure all fields are filled");
+  });
+});
+
+//date is not given but all other inputs are valid
+QUnit.test( 'register("first name","last name","","shlomo@brill.com","123456","123456") should return "Ensure all fields are filled"', assert => {
+  return register("first name","last name","","shlomo@brill.com","123456","123456").then( result => {
+    assert.equal( result, "Ensure all fields are filled");
+  });
+});
+
+//email is not given but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","","123456","123456") should return "Ensure all fields are filled"', assert => {
+  return register("first name","last name","17-22-2000","","123456","123456").then( result => {
+    assert.equal( result, "Ensure all fields are filled");
+  });
+});
+
+//Login user story 
 // login - valid password given and email not given 
 QUnit.test( 'login("", "123456") should return The email address is badly formatted.', assert => {
   return login("", "123456").then( result => {
