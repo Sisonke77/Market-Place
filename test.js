@@ -1,3 +1,5 @@
+const { start } = require('live-server');
+
 if (typeof module !== 'undefined' && module.exports) { // check we're server-side
   var QUnit = require('qunitjs'); // require QUnit node.js module
   // alias the QUnit.test method so we don't have to change all our tests
@@ -85,61 +87,62 @@ test('register("1","1","1","f87jhj@gfr.com","123456","123456")  should return ""
 
 //Login acceptance criteria
 //email missing, password given
-test('login("", "123456") should return "fail"', async function(assert){
+QUnit.test('login("", "123456") should return "fail"', async assert =>{
   var result = await login("", "123456");
   var expected = "fail";
-  deepEqual(result, expected);
+  assert.equal(result, expected);
+  // start();
 });
 
 
 //valid email given, passwrod missing
-test('login("shlomo@brill.com", "") should return "fail"', async function(assert){
-  var result = await login("shlomo@brill.com", "");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// test('login("shlomo@brill.com", "") should return "fail"', async function(assert){
+//   var result = await login("shlomo@brill.com", "");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//email and password missing
-test('login("", "") should return "fail"', async function(assert){
-  var result = await login("", "");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //email and password missing
+// test('login("", "") should return "fail"', async function(assert){
+//   var result = await login("", "");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid passwoed but incorrect email format with @ but without dot after @ 
-test('login("sds@jjhg", "123456") should return "fail"', async function(assert){
-  var result = await login("sds@jhg", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test valid passwoed but incorrect email format with @ but without dot after @ 
+// test('login("sds@jjhg", "123456") should return "fail"', async function(assert){
+//   var result = await login("sds@jhg", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test incorrect email format without @ and with valid password
-test('login("sdsksdjh.gmail.com", "123456") should return "fail"', async function(assert){
-  var result = await login("sdsksdjh.gmail.com", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test incorrect email format without @ and with valid password
+// test('login("sdsksdjh.gmail.com", "123456") should return "fail"', async function(assert){
+//   var result = await login("sdsksdjh.gmail.com", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid input that DNE in the DB
-test('login("sdkjhs@gmail.com", "123456") should return "fail"',async function(assert){
-  var result = await login("sdkjhs@gmail.com", "123456");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test valid input that DNE in the DB
+// test('login("sdkjhs@gmail.com", "123456") should return "fail"',async function(assert){
+//   var result = await login("sdkjhs@gmail.com", "123456");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test with valid email that exists but password with 5 chracters
-test('login("shlomo@brill.com", "12345") should return "fail"',async function(assert){
-  var result = await login("shlomo@brill.com", "12345");
-  var expected = "fail";
-  assert.deepEqual(result, expected);
-});
+// //test with valid email that exists but password with 5 chracters
+// test('login("shlomo@brill.com", "12345") should return "fail"',async function(assert){
+//   var result = await login("shlomo@brill.com", "12345");
+//   var expected = "fail";
+//   assert.deepEqual(result, expected);
+// });
 
-//test valid and existing login - test 1
-test('login("shlomdf@gmail.com", "123456") should return "logged"',async function(assert){
-  var result = await login("shlom0923@gmail.com", "123456");
-  var expected = "success";
-  assert.deepEqual(result, expected);
-});
+// //test valid and existing login - test 1
+// test('login("shlomdf@gmail.com", "123456") should return "logged"',async function(assert){
+//   var result = await login("shlom0923@gmail.com", "123456");
+//   var expected = "success";
+//   assert.deepEqual(result, expected);
+// });
 
 
 //sprint 4
@@ -152,27 +155,27 @@ test('login("shlomdf@gmail.com", "123456") should return "logged"',async functio
 // });
 
 //used for checking out. Length = 4
-test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
-  var result = getCategoryAndProductId(1000);
-  var expected = ["Clothes",0];
-  assert.deepEqual(result, expected);
-});
+// test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
+//   var result = getCategoryAndProductId(1000);
+//   var expected = ["Clothes",0];
+//   assert.deepEqual(result, expected);
+// });
 
-//used for checking out. Length = 5
-test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert){
-  var result = getCategoryAndProductId(20010);
-  var expected = ["Food",10];
-  assert.deepEqual(result, expected);
-});
+// //used for checking out. Length = 5
+// test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert){
+//   var result = getCategoryAndProductId(20010);
+//   var expected = ["Food",10];
+//   assert.deepEqual(result, expected);
+// });
 
-//Logging out
+// //Logging out
 
-//test logging out
-test('logout should log user out', function(assert){
-  var result = logout();
-  var expected = undefined;
-  assert.deepEqual(result, expected);
-});
+// //test logging out
+// test('logout should log user out', function(assert){
+//   var result = logout();
+//   var expected = undefined;
+//   assert.deepEqual(result, expected);
+// });
 
 // var firebase = require('firebase');
 //   var email = "shlomo@brill.com";
