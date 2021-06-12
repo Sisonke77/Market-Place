@@ -34,7 +34,6 @@ function register(fName, lName, dob, email, password, cPassword){
               };
               usersRef.set(userData, function(error){
                 if(error){
-                  var errorCode = error.code;
                   var errorMessage = error.message;
                   // window.alert("Message : " + errorMessage);
                 }
@@ -47,7 +46,7 @@ function register(fName, lName, dob, email, password, cPassword){
                   // return "";
                   setTimeout((function() {  
                     return process.exit(0);
-                  }),5);
+                  }),10);
                   // 
                 }
               });
