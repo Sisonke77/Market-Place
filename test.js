@@ -87,12 +87,12 @@ test('register("1","1","1","f87jhj@gfr.com","123456","123456")  should return ""
 
 //Login acceptance criteria
 //email missing, password given
-QUnit.test('login("", "123456") should return "fail"', async assert =>{
-  var result = await login("", "123456");
-  var expected = "fail";
-  assert.equal(result, expected);
-  // start();
-});
+// QUnit.test('login("", "123456") should return "fail"', async assert =>{
+//   var result = await login("", "123456");
+//   var expected = "fail";
+//   assert.equal(result, expected);
+//   // start();
+// });
 
 
 //valid email given, passwrod missing
