@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <!-- bootstrap styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- for Firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-storage.js"></script>
+
+<!-- To connect to Firebase database -->
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBmJqjAXztETX4Dh4vEetlB4QzN9uqReYA",
+    authDomain: "witsmarketproject.firebaseapp.com",
+    databaseURL: "https://witsmarketproject-default-rtdb.firebaseio.com",
+    projectId: "witsmarketproject",
+    storageBucket: "witsmarketproject.appspot.com",
+    messagingSenderId: "650642470600",
+    appId: "1:650642470600:web:49fe3a262e6ca122b597fd",
+    measurementId: "G-EHXK572PE1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.auth.Auth.Persistence.LOCAL;
+</script>
+
+</head>
+<body>
+    <header class="header_section">
+        <div class="header_top">
+            <div class="container-fluid">
+                <div class="top_nav_container">
+                  <div class="contact_nav">
+                    <span style="color: white;" id="fName">
+                    </span>
+                </div>
+                <from class="search_form">
+                </from>
+                    <div class="user_option_box">
+                        <a href="" class="account-link">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                          <span >
+                              <a onclick="logout()" href="#">Logout</a>
+                          </span>
+                        </a>
+                        <a href="" class="cart-link">
+                          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                          <span>
+                              <a id="cart" onclick href="cart.html"></a>
+                          </span>
+                        </a>
+                        <a href="" class="account-link">
+                          <i class="fa fa-th-list" aria-hidden="true"></i>
+                          <span >
+                            <a onclick="goToOrderHistory()" href="#">Order History</a>
+                          </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header_bottom">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+              <a class="navbar-brand" href="index.html">
+                <span>
+                  Wits Market Place
+                </span>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""> </span>
+              </button>
+            </nav>
+          </div>
+        </div>
+    </header>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<h1 style="padding: 0px 30px 30px 20px;">Checkout</h1>
+
+<div class="container">
+  <div class='row'>
+    <div class='col-md-4'></div>
+    <div class='col-md-4'>
+      <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+      <div class='form-row'>
+        <div class='col-xs-12 form-group required'>
+          <label class='control-label'>Street Address</label>
+          <input list="streetAddress" id="streetAddress1" class='form-control' size='4' type='text'>
+          <datalist id="streetAddress"></datalist>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-xs-12 form-group required'>
+          <label class='control-label'>Suburb</label>
+          <input list="suburb" id="suburb1" class='form-control' size='4' type='text'>
+          <datalist id="suburb"></datalist>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-xs-12 form-group required'>
+          <label class='control-label'>City</label>
+          <input list="city" id="city1" class='form-control' size='4' type='text'>
+          <datalist id="city"></datalist>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-xs-12 form-group required'>
+          <label class='control-label'>Province</label>
+          <input list="province" id="province1" class='form-control' size='4' type='text'>
+          <datalist id="province"></datalist>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-xs-12 form-group required'>
+          <label class='control-label'>Postal Code</label>
+          <input list="postalCode" id="postalCode1" class='form-control' size='4' type='text'>
+          <datalist id="postalCode"></datalist>
+        </div>
+      </div>
+
+      <div class='form-row'>
+        <div class='col-md-12'>
+          <div class='form-control total btn btn-info'>
+            Total:
+            <span id="totalPrice" class='amount'></span>
+          </div>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-md-12 form-group'>
+          <button onclick="confirmYourOrder()" class='form-control btn btn-primary submit-button' type="button">Confirm Your Order »</button>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='col-md-12 error form-group hide'>
+          <div class='alert-danger alert'>
+            Please correct the errors and try again.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class='col-md-4'></div>
+</div>
+
+
+
+<!-- partial:index.partial.html -->
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./cart.js"></script>
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+
+
+    <script src="index.js"></script> 
+    <script>
+      firebase.auth().onAuthStateChanged(function(user)
+      {
+        if (!user) {
+            window.location.href = "signin.html";
+        }
+        else{
+          init();
+          checkoutOpen();
+          checkoutDelevery();
+
+          // dbRef.child("users").child(user.uid).child("cart").child("totalCartPrice").once("value", function(cartData) {
+          //   var cart_total = "R"+cartData.val();  
+            
+          //   document.getElementById("totalPrice").innerHTML = cart_total;
+
+          //   // document.getElementById("totalPrice").innerHTML = cart_total;
+          //   // cart_total = "R500";
+          //   // document.getElementById("totalPrice").innerHTML = cart_total;
+          // });          
+        }
+      });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
