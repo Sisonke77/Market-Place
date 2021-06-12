@@ -35,15 +35,16 @@ function register(fName, lName, dob, email, password, cPassword){
               usersRef.set(userData, function(error){
                 if(error){
                   var errorMessage = error.message;
-                  // window.alert("Message : " + errorMessage);
+                  if (isWebsite()) {
+                    window.alert("Error : " + errorMessage);
+                 }
                 }
                 else{           
                   message = "Success"
                   resolve(message);
-                  // window.location.href = "index.html";
-                  // returnMesage = "success";
-                  // window.alert(returnMesage)
-                  // return "";
+                  if (isWebsite()) {
+                     window.location.href = "index.html";
+                  }
                   setTimeout((function() {  
                     return process.exit(0);
                   }),0);
@@ -75,27 +76,6 @@ function register(fName, lName, dob, email, password, cPassword){
     }
   }); 
 }
-//registration function 
-// function login(email,password) {
-//   return new Promise( resolve => {
-//     var message;
-//     firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-//       // var user = userCredential.user;
-//       message = "success" 
-//       resolve(message);
-//       // window.alert(user)
-//       // window.location.href = "index.html";
-//     })
-//     .catch((error) => {
-//       message = error.message
-//       print(message)
-//       resolve(message);
-//       // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
-//     }); 
-//   });
-// }
-  
-
 
 function login(email,password) {
   return new Promise( resolve => {
@@ -105,7 +85,9 @@ function login(email,password) {
       message = "success" 
       resolve(message);
       // window.alert(user)
-      // window.location.href = "index.html";
+      if (isWebsite()) {
+        window.location.href = "index.html";
+     }
     })
     .catch((error) => {
       message = error.message
@@ -115,79 +97,6 @@ function login(email,password) {
     }); 
   });
 }
-
-
-// function register(fName, lName, dob, email, password, cPassword){
-//   var returnMesage = "";
-//   if (password != "" && cPassword != ""){
-//     if(password == cPassword){
-//       if(fName!= "" && lName != "" && dob != "" && email!= ""){
-//         createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
-//         return ""; 
-//       }
-//       else{
-//         returnMesage = "Please ensure all fields are filled";
-//         // document.getElementById('errorLbl').innerHTML = returnMesage;
-//         // window.alert(returnMesage);
-//       }
-//     }
-//     else{
-//       returnMesage = "Passwords do not match"
-//       // document.getElementById('errorLbl').innerHTML = returnMesage;
-//       // window.alert(returnMesage);
-//     }
-//       return returnMesage;
-//   }else{
-//     // window.alert("Please ensure all fields are filled");
-//     returnMesage = "Please ensure all fields are filled";
-//     // document.getElementById('errorLbl').innerHTML = returnMesage;
-//     return returnMesage;
-//   }
-// }
-
-
-// function createAccountInFirebase(fName, lName, dob, email, password, cPassword){  
-//   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-//     // Signed in 
-//     var user = userCredential.user.uid; var rootRef = firebase.database().ref(); 
-//     var usersRef = rootRef.child("users").child(user).child("details");
-//     var userData = 
-//     {
-//       firstName: fName,
-//       lastName: lName,
-//       dateOfBirth: dob,
-//       email: email,
-//       availableMoney: 100000
-//     };
-//     usersRef.set(userData, function(error){
-//       if(error){
-//         var errorCode = error.code;
-//         var errorMessage = error.message;
-//         // document.getElementById('errorLbl').innerHTML = errorMessage;
-//         // window.alert("Message : " + errorMessage);
-//       }
-//       else{
-//         // window.location.href = "index.html";
-//         // returnMesage = "success";
-//         // window.alert(returnMesage)
-//         // return "";
-      
-//         // 
-//       }
-//     });
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-
-//     // window.alert(errorMessage);
-//     // return ""
-//     // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
-//     // // ..
-//   });
-//   // return ""; 
-// }
-
 
 function logout(){
   firebase.auth().signOut().then(function() {
@@ -526,11 +435,27 @@ function print(message){
   return message;
 }
 
+//function for testing purposes - generate random new valid email
+function genrateRandomEmail(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+    charactersLength));
+ }
+ return result+ "@gmail.com";
+}
+
+function isWebsite(){
+  return typeof window !== 'undefined'
+}
 if (typeof module !== 'undefined' && module.exports) {
      module.exports = 
      {
        register,
        login,
+       genrateRandomEmail,
      };
   }
   

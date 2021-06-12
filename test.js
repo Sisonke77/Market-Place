@@ -5,6 +5,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var methods = require('./public/index.js');
   var register = methods.register;
   var login = methods.login;
+  var genrateRandomEmail = methods.genrateRandomEmail;
 }
 
 //sprint 1 
@@ -84,17 +85,7 @@ QUnit.test( 'register("first name","last name","17-22-2000","shlomogmail.co.za",
   });
 });
 
-//All details are valid but email is already in use
-function genrateRandomString(length) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-    result += characters.charAt(Math.floor(Math.random() * 
-charactersLength));
- }
- return result+ "@gmail.com";
-}
+//Registration - all correct details done at the botom of the pgae
 
 
 
@@ -222,8 +213,17 @@ QUnit.test( 'login("shlomo@brill.com", "123456") should return success', assert 
 // });
 
 
+
+//testing randomEmailGenerator function 
+QUnit.test( 'generateRandomEmail(5) testing ', assert => {
+    result = genrateRandomEmail(5).length;
+    assert.equal( result, 15);
+
+});
+
 //generate random first name and last name for new email testing
-randEmail = genrateRandomString(5);
+randEmail = genrateRandomEmail(5);
+//All details are valid but email is already in use
 QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456") should return "Success"', assert => {
   return register("first name","last name","17-22-2000",randEmail,"123456","123456").then( result => {
     assert.equal( result, "Success");
