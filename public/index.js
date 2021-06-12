@@ -14,39 +14,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-
-function login(email,password){ 
-  var message =""
-  if (email == ""){
-    message = "Please ensure all fields are filled";
-  }
-  if (password == ""){
-    message = "Please ensure all fields are filled";
-  }
-  if (email == "" && password ==""){
-    message = "Please ensure all fields are filled";
-  }
-  firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-    var user = userCredential.user; 
-    window.location.href = "index.html";
-  })
-  .catch((error) => {
-    var errorMessage = error.message;
-    // window.alert(errorMessage)
-  }); 
-  // console.log(error.message)
-
-  // window.alert(message)
-  if (message == ""){
-    return "logged";
-  }else{
-    return message;
-  }
-  
-}
-
+//registration function 
 function register(fName, lName, dob, email, password, cPassword){
-  var returnMesage = "";
   if (password != "" && cPassword != ""){
     if(password == cPassword){
       if(fName!= "" && lName != "" && dob != "" && email!= ""){
@@ -73,6 +42,54 @@ function register(fName, lName, dob, email, password, cPassword){
   }
 }
 
+function login(email,password) {
+  return new Promise( resolve => {
+    var message;
+      firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+        // var user = userCredential.user;
+        message = "success" 
+        resolve(message);
+        // window.alert(user)
+        // window.location.href = "index.html";
+      })
+      .catch((error) => {
+        message = error.message
+        print(message)
+        resolve(message);
+        // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+      }); 
+  });
+}
+
+
+// function register(fName, lName, dob, email, password, cPassword){
+//   var returnMesage = "";
+//   if (password != "" && cPassword != ""){
+//     if(password == cPassword){
+//       if(fName!= "" && lName != "" && dob != "" && email!= ""){
+//         createAccountInFirebase(fName, lName, dob, email, password, cPassword); 
+//         return ""; 
+//       }
+//       else{
+//         returnMesage = "Please ensure all fields are filled";
+//         // document.getElementById('errorLbl').innerHTML = returnMesage;
+//         // window.alert(returnMesage);
+//       }
+//     }
+//     else{
+//       returnMesage = "Passwords do not match"
+//       // document.getElementById('errorLbl').innerHTML = returnMesage;
+//       // window.alert(returnMesage);
+//     }
+//       return returnMesage;
+//   }else{
+//     // window.alert("Please ensure all fields are filled");
+//     returnMesage = "Please ensure all fields are filled";
+//     // document.getElementById('errorLbl').innerHTML = returnMesage;
+//     return returnMesage;
+//   }
+// }
+
 
 function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
  
@@ -96,7 +113,7 @@ function createAccountInFirebase(fName, lName, dob, email, password, cPassword){
         // window.alert("Message : " + errorMessage);
       }
       else{
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
         // returnMesage = "success";
         // window.alert(returnMesage)
         // return "";
@@ -446,6 +463,12 @@ function init(){
       } 
     });
   });
+}
+
+function print(message){
+  if (typeof window !== 'undefined') {
+    window.alert(message)
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
