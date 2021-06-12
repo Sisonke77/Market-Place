@@ -21,7 +21,6 @@ function register(fName, lName, dob, email, password, cPassword){
       if(password == cPassword){
         if(fName!= "" && lName != "" && dob != "" && email!= ""){
             firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-              // Signed in 
               var user = userCredential.user.uid; 
               var rootRef = firebase.database().ref(); 
               var usersRef = rootRef.child("users").child(user).child("details");
@@ -39,43 +38,38 @@ function register(fName, lName, dob, email, password, cPassword){
                   var errorMessage = error.message;
                   // window.alert("Message : " + errorMessage);
                 }
-                else{
+                else{           
+                  message = "Success"
+                  resolve(message);
                   // window.location.href = "index.html";
                   // returnMesage = "success";
                   // window.alert(returnMesage)
                   // return "";
-                
+                  setTimeout((function() {  
+                    return process.exit(0);
+                  }),0);
                   // 
                 }
               });
             })
-            .catch((error) => {
-              // var errorCode = error.code;
-              // var errorMessage = error.message;
-          
-              // window.alert(errorMessage);
-              // return ""
-              // document.getElementById('errorLbl').innerHTML = errorMessage;          // window.alert(errorMessage)
-              // // ..
+            .catch((error) => { //if there is any error with detail, display error
+              var errorMessage = error.message;             
+              message = print(errorMessage);
+              resolve(message);
             });
-            // return ""; 
-              // returnMesage = "Please ensure all fields are filled";
-                // document.getElementById('errorLbl').innerHTML = returnMesage;
-                // window.alert(returnMesage); 
-          // return ""; 
         }
-        else{
+        else{ //if fields are missing - display error message
           returnMesage = "Ensure all fields are filled";
           message = print(returnMesage);
           resolve(message);
         }
       }
-      else{
+      else{ // if passwords do not match display a message
         returnMesage = "Passwords do not match. Please try again."
         message = print(returnMesage);
         resolve(message);
       }
-    }else{
+    }else{ //if passwords are empty - display a message
       returnMesage = "Enter both passwords";
       message = print(returnMesage);
       resolve(message);

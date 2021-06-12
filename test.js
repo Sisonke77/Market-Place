@@ -63,6 +63,47 @@ QUnit.test( 'register("first name","last name","17-22-2000","","123456","123456"
   });
 });
 
+//password length is less than 6 but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","shlomo@brill.com","12345","12345") should return "Password should be at least 6 characters"', assert => {
+  return register("first name","last name","17-22-2000","shlomo@brill.com","12345","12345").then( result => {
+    assert.equal( result, "Password should be at least 6 characters");
+  });
+});
+
+//invalid email but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","shlomogmail.co.za","123456","123456") should return "The email address is badly formatted."', assert => {
+  return register("first name","last name","17-22-2000","shlomogmail.co.za","123456","123456").then( result => {
+    assert.equal( result, "The email address is badly formatted.");
+  });
+});
+
+//invalid email but all other inputs are valid
+QUnit.test( 'register("first name","last name","17-22-2000","shlomogmail.co.za","123456","123456") should return "The email address is badly formatted."', assert => {
+  return register("first name","last name","17-22-2000","shlomogmail.co.za","123456","123456").then( result => {
+    assert.equal( result, "The email address is badly formatted.");
+  });
+});
+
+//All details are valid but email is already in use
+function genrateRandomString(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+charactersLength));
+ }
+ return result+ "@gmail.com";
+}
+
+//generate random first name and last name for new email testing
+randEmail = genrateRandomString(5);
+QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456") should return "Success"', assert => {
+  return register("first name","last name","17-22-2000",randEmail,"123456","123456").then( result => {
+    assert.equal( result, "Success");
+  });
+});
+
 //Login user story 
 // login - valid password given and email not given 
 QUnit.test( 'login("", "123456") should return The email address is badly formatted.', assert => {
