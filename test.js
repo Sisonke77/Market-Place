@@ -96,13 +96,7 @@ charactersLength));
  return result+ "@gmail.com";
 }
 
-//generate random first name and last name for new email testing
-randEmail = genrateRandomString(5);
-QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456") should return "Success"', assert => {
-  return register("first name","last name","17-22-2000",randEmail,"123456","123456").then( result => {
-    assert.equal( result, "Success");
-  });
-});
+
 
 //Login user story 
 // login - valid password given and email not given 
@@ -228,6 +222,13 @@ QUnit.test( 'login("shlomo@brill.com", "123456") should return success', assert 
 // });
 
 
+//generate random first name and last name for new email testing
+randEmail = genrateRandomString(5);
+QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456") should return "Success"', assert => {
+  return register("first name","last name","17-22-2000",randEmail,"123456","123456").then( result => {
+    assert.equal( result, "Success");
+  });
+});
 
 
 if (typeof module !== 'undefined' && module.exports) { QUnit.load(); } // run the tests

@@ -46,7 +46,7 @@ function register(fName, lName, dob, email, password, cPassword){
                   // return "";
                   setTimeout((function() {  
                     return process.exit(0);
-                  }),10);
+                  }),0);
                   // 
                 }
               });
