@@ -87,10 +87,27 @@ test('register("1","1","1","f87jhj@gfr.com","123456","123456")  should return ""
 
 //Login acceptance criteria
 //email missing, password given
+
+// function fetchSquare( x ) {
+//   return new Promise( resolve => {
+//     setTimeout(() => { resolve( x * x ); }, 1000);
+//   });
+// }
+
+QUnit.test( "Test with Promise fail", assert => {
+  return login("", "123456").then( result => {
+    assert.equal( result, "fail");
+  });
+});
+QUnit.test( "Test with Promise success", assert => {
+  return login("shlomo@brill.com", "123456").then( result => {
+    assert.equal( result, "success");
+  });
+});
 // QUnit.test('login("", "123456") should return "fail"', async assert =>{
-//   var result = await login("", "123456");
+//   var result = login("", "123456");
 //   var expected = "fail";
-//   assert.equal(result, expected);
+//   assert.deepEqual(result, expected);
 //   // start();
 // });
 

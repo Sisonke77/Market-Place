@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/dwyl/learn-tdd",
   "devDependencies": {
+    "babel-plugin-import": "^1.13.3",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.0",
     "live-server": "^1.1.0",
