@@ -8,6 +8,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var genrateRandomEmail = methods.genrateRandomEmail;
   var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
+  var cartToFirebase = methods.cartToFirebase;
 }
 
 //sprint 1 
@@ -139,6 +140,7 @@ QUnit.test( 'logout() should return "success"', assert => {
   });
 });
 
+//testing getCategoryAndProductId
 //used for checking out. Length = 4
 test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
   var result = getCategoryAndProductId(1000);
@@ -151,6 +153,39 @@ test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert
   var result = getCategoryAndProductId(20010);
   var expected = ["Food",10];
   assert.deepEqual(result, expected);
+});
+
+// var firebase = require('firebase');
+//   var email = "shlomo@brill.com";
+//   var password = "123456";
+//   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+//     console.log("logged in")
+//   })
+//   .catch((error) => {
+//     var errorMessage = error.message;
+//     console.log("error " + errorMessage)
+//     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+//   }); 
+//teting cartToFirebase
+QUnit.test( 'cartToFirebase() should return "?"', assert => {
+  var firebase = require('firebase');
+  var email = "shlomo@brill.com";
+  var password = "123456";
+  return firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+      console.log("logged in")
+      return cartToFirebase("1001").then( result => {
+        console.log("printing1? " +result)
+        assert.equal( result, "Product has been added to your cart");
+      });
+  })
+// 
+//   
+//   .catch((error) => {
+//     var errorMessage = error.message;
+//     console.log("error " + errorMessage)
+//     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
+//   }); 
+  
 });
 
 

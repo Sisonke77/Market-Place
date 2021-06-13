@@ -94,7 +94,12 @@ function login(email,password) {
     .catch((error) => {
       message = error.message
       print(message)
-      resolve(message);
+      if (error==false){
+        resolve(message);
+      }else{
+        resolve(message);
+      }
+      
       // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
     }); 
   });
@@ -126,23 +131,29 @@ function getCategoryAndProductId(productId){
   }
 }
 
-function cartToFirebase(productId){
-  var categoryProduct = getCategoryAndProductId(productId);
-  var category = categoryProduct[0];
-  var productId = "id"+categoryProduct[1];
-  var categoryProductId = category +"_"+ productId;
-  firebase.auth().onAuthStateChanged(function(user){
-    const rootRef = firebase.database().ref();
-    var usersRef = rootRef.child("users").child(user.uid).child("cart").child(categoryProductId);
-      var userData = 
-      {
-        category: category,
-        productId: productId,
-        quantity: 1
-      };
-      usersRef.set(userData);
-      window.alert("Product has been added to your cart");
-      location.reload();
+function cartToFirebase(prodId){
+  return new Promise( resolve => {
+    // window.alert(prodId)
+    var categoryProduct = getCategoryAndProductId(prodId);
+    var category = categoryProduct[0];
+    var productId = "id"+categoryProduct[1];
+    var categoryProductId = category +"_"+ productId;
+    firebase.auth().onAuthStateChanged(function(user){
+      const rootRef = firebase.database().ref();
+      var usersRef = rootRef.child("users").child(user.uid).child("cart").child(categoryProductId);
+        var userData = 
+        {
+          category: category,
+          productId: productId,
+          quantity: 1
+        };
+        usersRef.set(userData, function(error){
+          var alertMessage = "Product has been added to your cart";
+          var message = print(alertMessage)
+          // location.reload();
+          resolve(message);
+        });
+    });
   });
 }
 
@@ -463,6 +474,7 @@ if (typeof module !== 'undefined' && module.exports) {
        logout,
        genrateRandomEmail,
        getCategoryAndProductId,
+       cartToFirebase,
      };
   }
   
