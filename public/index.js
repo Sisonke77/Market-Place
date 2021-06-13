@@ -14,7 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-function register(fName, lName, dob, email, password, cPassword){
+function register(fName, lName, dob, email, password, cPassword, exit, setError){
    return new Promise( resolve => {
     var returnMesage = "";
     if (password != "" && cPassword != ""){
@@ -23,6 +23,10 @@ function register(fName, lName, dob, email, password, cPassword){
             firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
               var user = userCredential.user.uid; 
               var rootRef = firebase.database().ref(); 
+              if (setError){
+                rootRef = null;
+              }
+              // console.log(rootRef)
               var usersRef = rootRef.child("users").child(user).child("details");
               var userData = 
               {
@@ -36,19 +40,21 @@ function register(fName, lName, dob, email, password, cPassword){
                 if(error){
                   var errorMessage = error.message;
                   if (isWebsite()) {
-                    window.alert("Error : " + errorMessage);
-                 }
+                    window.alert("Message : " + errorMessage);
+                  }
                 }
                 else{           
                   message = "Success"
                   resolve(message);
                   if (isWebsite()) {
                      window.location.href = "index.html";
+                  }else{
+                    if(exit == true){
+                      setTimeout((function() {  
+                        return process.exit(0);
+                      }),0);
+                    }
                   }
-                  setTimeout((function() {  
-                    return process.exit(0);
-                  }),0);
-                  // 
                 }
               });
             })

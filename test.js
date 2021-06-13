@@ -9,11 +9,8 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
 }
 
 //sprint 1 
-//Registration 
-//Acceptance criteria (1): 
 
-// If there exist an input field that is left empty, 
-// I will get an error message and I will remain in the registration page.
+//Registration acceptance criteria
 
 //first password is not given but all other inputs are valid
 QUnit.test( 'register("first name","last name","17-22-2000","shlomo@brill.com","","123456") should return "Enter both password"', assert => {
@@ -88,8 +85,8 @@ QUnit.test( 'register("first name","last name","17-22-2000","shlomogmail.co.za",
 //Registration - all correct details done at the botom of the pgae
 
 
+//Login acceptance criteria 
 
-//Login user story 
 // login - valid password given and email not given 
 QUnit.test( 'login("", "123456") should return The email address is badly formatted.', assert => {
   return login("", "123456").then( result => {
@@ -97,72 +94,22 @@ QUnit.test( 'login("", "123456") should return The email address is badly format
   });
 });
 
-// login - valid email and password given
-QUnit.test( 'login("shlomo@brill.com", "123456") should return success', assert => {
-  return login("shlomo@brill.com", "123456").then( result => {
-    assert.equal( result, "success");
+// login - valid email given and password not given 
+QUnit.test( 'login("shlomo@brill.com", "") should return "The password is invalid or the user does not have a password."', assert => {
+  return login("shlomo@brill.com", "").then( result => {
+    assert.equal( result, "The password is invalid or the user does not have a password.");
   });
 });
 
-//Registration acceptance criteria 
-//missing first name
-// test('register("","1","1","1","1","1") should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("","1","1","1","1","1"); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
+
+
+
+// login - valid email and password given
+// QUnit.test( 'login("shlomo@brill.com", "123456") should return success', assert => {
+//   return login("shlomo@brill.com", "123456").then( result => {
+//     assert.equal( result, "success");
+//   });
 // });
-
-// //missing last name
-// test('register("1","","1","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("1","","1","1","1","1"); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //missing date of birth
-// test('register("1","1","","1","1","1")  should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("1","1","","1","1","1"); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //missing email
-// test('register("1","1","1","","1","1") should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("1","1","1","","1","1"); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //missing password
-// test('register("1","1","1","1","","1")  should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("1","1","1","1","","1"); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //missing confirmed password
-// test('register("1","1","1","1","1","")  should return "Please ensure all fields are filled"', function(assert){
-//   var result = register("1","1","1","1","1",""); 
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //passwords given but do not match
-// test('register("1","1","1","1","114543","128787")  should return "Passwords do not match"', function(assert){
-//   var result = register("1","1","1","1","114543","128787"); 
-//   var expected = "Passwords do not match";
-//   assert.deepEqual(result, expected); 
-// });
-
-// //all details given but email address is already on the system
-// test('register("1","1","1","fdsft43s@g987l.com","123456","123456")  should return ""', function(assert){
-//   var result = register("1","1","1","fdsft43s@jhggl.com","123456","123456"); 
-//   var expected = "";
-//   assert.deepEqual(result, expected); 
-// });
-
-
-// //Login acceptance criteria
 
 // //email missing, password given
 // test('login("", "123456") should return "Please ensure all fields are filled"', function(assert){
@@ -222,13 +169,20 @@ QUnit.test( 'generateRandomEmail(5) testing ', assert => {
 });
 
 //generate random first name and last name for new email testing
-randEmail = genrateRandomEmail(5);
-//All details are valid but email is already in use
-QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456") should return "Success"', assert => {
-  return register("first name","last name","17-22-2000",randEmail,"123456","123456").then( result => {
-    assert.equal( result, "Success");
+randEmail1 = genrateRandomEmail(5);
+//Error in submission of details
+QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail1+'","123456","123456", false, true) should return "Cannot read property child of null"', assert => {
+  return register("first name","last name","17-22-2000",randEmail1,"123456","123456", false,true).then( result => {
+    assert.equal( result, "Cannot read property 'child' of null");
   });
 });
 
+randEmail2 = genrateRandomEmail(5);
+//All details are valid
+QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail2+'","123456","123456", true) should return "Success"', assert => {
+  return register("first name","last name","17-22-2000",randEmail2,"123456","123456", true).then( result => {
+    assert.equal( result, "Success");
+  });
+});
 
 if (typeof module !== 'undefined' && module.exports) { QUnit.load(); } // run the tests
