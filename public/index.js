@@ -150,7 +150,9 @@ function cartToFirebase(prodId){
         usersRef.set(userData, function(error){
           var alertMessage = "Product has been added to your cart";
           var message = print(alertMessage)
-          // location.reload();
+          if (isWebsite()){
+            location.reload();
+          }
           resolve(message);
         });
     });
@@ -158,15 +160,20 @@ function cartToFirebase(prodId){
 }
 
 function removeProduct(userUidAndCartId){ //seperated by #
-  var arr =  userUidAndCartId.split("#");
-  var userUid  = arr[0];
-  var categoryProductId = arr[1];
-  const rootRef = firebase.database().ref();
+  return new Promise( resolve => {
+    var arr =  userUidAndCartId.split("#");
+    var userUid  = arr[0];
+    var categoryProductId = arr[1];
+    const rootRef = firebase.database().ref();
 
-  var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId);
-  categotyProd.set(null);
-
-  window.location.href = "cart.html";
+    var categotyProd = rootRef.child("users").child(userUid).child("cart").child(categoryProductId);
+    categotyProd.set(null, function(error){
+      if (isWebsite()){
+        window.location.href = "cart.html";
+      }
+      resolve("Success");
+    });
+  });
 }
 
 function updateQuantity(userUidAndCartId){ //seperated by #
@@ -475,6 +482,7 @@ if (typeof module !== 'undefined' && module.exports) {
        genrateRandomEmail,
        getCategoryAndProductId,
        cartToFirebase,
+       removeProduct,
      };
   }
   

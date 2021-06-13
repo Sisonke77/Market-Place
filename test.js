@@ -9,6 +9,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var logout = methods.logout;
   var getCategoryAndProductId = methods.getCategoryAndProductId;
   var cartToFirebase = methods.cartToFirebase;
+  var removeProduct = methods.removeProduct;
 }
 
 //sprint 1 
@@ -155,95 +156,29 @@ test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert
   assert.deepEqual(result, expected);
 });
 
-// var firebase = require('firebase');
-//   var email = "shlomo@brill.com";
-//   var password = "123456";
-//   firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-//     console.log("logged in")
+var firebase = require('firebase');
+var email = "shlomo@brill.com";
+var password = "123456";
+
+//teting cartToFirebase 
+// QUnit.test( 'cartToFirebase() should return "Product has been added to your cart"', assert => {
+//   return firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+//       return cartToFirebase("1001").then( result => {
+//         assert.equal( result, "Product has been added to your cart");
+//       });
 //   })
-//   .catch((error) => {
-//     var errorMessage = error.message;
-//     console.log("error " + errorMessage)
-//     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
-//   }); 
-//teting cartToFirebase
-QUnit.test( 'cartToFirebase() should return "?"', assert => {
-  var firebase = require('firebase');
-  var email = "shlomo@brill.com";
-  var password = "123456";
+// });
+
+//teting removeProduct function
+QUnit.test( 'removeProduct() should return "Success"', assert => {
   return firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-      console.log("logged in")
       return cartToFirebase("1001").then( result => {
-        console.log("printing1? " +result)
-        assert.equal( result, "Product has been added to your cart");
+        return removeProduct("4Xi1q4hZ7RQYLPZZhckcP9X29Lg2#Clothes_id1").then( result => {
+          assert.equal( result, "Success");
+        });
       });
   })
-// 
-//   
-//   .catch((error) => {
-//     var errorMessage = error.message;
-//     console.log("error " + errorMessage)
-//     // window.alert(errorMessage)///////////////////////////////////////////////////////////////////////////////
-//   }); 
-  
 });
-
-
-// login - valid email and password given
-// QUnit.test( 'login("shlomo@brill.com", "123456") should return success', assert => {
-//   return login("shlomo@brill.com", "123456").then( result => {
-//     assert.equal( result, "success");
-//   });
-// });
-
-// //email missing, password given
-// test('login("", "123456") should return "Please ensure all fields are filled"', function(assert){
-//   var result = login("", "123456");
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected);
-// });
-
-// //email given, passwrod missing
-// test('login("x", "") should return "Please ensure all fields are filled"', function(assert){
-//   var result = login("x", "");
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected);
-// });
-
-// //email and password missing
-// test('login("", "") should return "Please ensure all fields are filled"', function(assert){
-//   var result = login("", "");
-//   var expected = "Please ensure all fields are filled";
-//   assert.deepEqual(result, expected);
-// });
-
-// //test incorrect email format with @ but with out dot after @
-// test('login("sds@", "123456") should return "logged"', function(assert){
-//   var result = login("sds@", "123456");
-//   var expected = "logged";
-//   assert.deepEqual(result, expected);
-// });
-// //test incorrect email format without @
-// test('login("sdsksdjh.gmail.com", "123456") should return "logged"', function(assert){
-//   var result = login("sdsksdjh.gmail.com", "123456");
-//   var expected = "logged";
-//   assert.deepEqual(result, expected);
-// });
-
-// //test valid input that DNE in the DB
-// test('login("sds@ksdjh.gmail.com", "123456") should return "logged"', function(assert){
-//   var result = login("sds@ksdjh.gmail.com", "123456");
-//   var expected = "logged";
-//   assert.deepEqual(result, expected);
-// });
-
-// //test valid and existing login
-// test('login("shlomdf@gmail.com", "123456") should return "logged"', function(assert){
-//   var result = login("shlom0923@gmail.com", "123456");
-//   var expected = "logged";
-//   assert.deepEqual(result, expected);
-// });
-
 
 
 //testing randomEmailGenerator function 
