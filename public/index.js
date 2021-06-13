@@ -38,9 +38,8 @@ function register(fName, lName, dob, email, password, cPassword, exit, setError)
               };
               usersRef.set(userData, function(error){
                 if(error){
-                  var errorMessage = error.message;
                   if (isWebsite()) {
-                    window.alert("Message : " + errorMessage);
+                    window.alert("Message : " + error.message);
                   }
                 }
                 else{           
@@ -90,7 +89,6 @@ function login(email,password) {
       // var user = userCredential.user;
       message = "success" 
       resolve(message);
-      // window.alert(user)
       if (isWebsite()) {
         window.location.href = "index.html";
      }

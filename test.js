@@ -101,6 +101,20 @@ QUnit.test( 'login("shlomo@brill.com", "") should return "The password is invali
   });
 });
 
+// login - email and password given but are password not valid
+QUnit.test( 'login("shlomo@brill.com", "123") should return "The password is invalid or the user does not have a password."', assert => {
+  return login("shlomo@brill.com", "123").then( result => {
+    assert.equal( result, "The password is invalid or the user does not have a password.");
+  });
+});
+
+// login - successful login
+QUnit.test( 'login("shlomo@brill.com", "123") should return "The password is invalid or the user does not have a password."', assert => {
+  return login("shlomo@brill.com", "123456").then( result => {
+    assert.equal( result, "success");
+  });
+});
+
 
 
 
