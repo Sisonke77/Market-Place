@@ -108,6 +108,20 @@ QUnit.test( 'login("shlomo@brill.com", "123") should return "The password is inv
   });
 });
 
+// login - password valid but email invalid
+QUnit.test( 'login("shlomhjgo@brill.com", "123456") should return "There is no user record corresponding to this identifier. The user may have been deleted."', assert => {
+  return login("shlomhjgo@brill.com", "123456").then( result => {
+    assert.equal( result, "There is no user record corresponding to this identifier. The user may have been deleted.");
+  });
+});
+
+// login - email given but without @ 
+QUnit.test( 'login("shlomhjgobrill.com", "123456") should return "The email address is badly formatted."', assert => {
+  return login("shlomhjgobrill.com", "123456").then( result => {
+    assert.equal( result, "The email address is badly formatted.");
+  });
+});
+
 // login - successful login
 QUnit.test( 'login("shlomo@brill.com", "123") should return "The password is invalid or the user does not have a password."', assert => {
   return login("shlomo@brill.com", "123456").then( result => {
