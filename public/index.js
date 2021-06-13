@@ -101,10 +101,13 @@ function login(email,password) {
 }
 
 function logout(){
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-  }).catch(function(error) {
-    // An error happened.
+  return new Promise( resolve => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      resolve("success")
+    }).catch(function(error) {
+      print(error.message)
+    });
   });
 }
 
@@ -457,6 +460,7 @@ if (typeof module !== 'undefined' && module.exports) {
      {
        register,
        login,
+       logout,
        genrateRandomEmail,
      };
   }

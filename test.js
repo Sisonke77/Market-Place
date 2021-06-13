@@ -6,6 +6,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var register = methods.register;
   var login = methods.login;
   var genrateRandomEmail = methods.genrateRandomEmail;
+  var logout = methods.logout;
 }
 
 //sprint 1 
@@ -125,6 +126,14 @@ QUnit.test( 'login("shlomhjgobrill.com", "123456") should return "The email addr
 // login - successful login
 QUnit.test( 'login("shlomo@brill.com", "123") should return "The password is invalid or the user does not have a password."', assert => {
   return login("shlomo@brill.com", "123456").then( result => {
+    assert.equal( result, "success");
+  });
+});
+
+// ------------------------------------------------------
+// logout - testing if successful
+QUnit.test( 'logout() should return "success"', assert => {
+  return logout().then( result => {
     assert.equal( result, "success");
   });
 });
