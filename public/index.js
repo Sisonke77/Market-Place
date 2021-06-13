@@ -462,6 +462,7 @@ if (typeof module !== 'undefined' && module.exports) {
        login,
        logout,
        genrateRandomEmail,
+       getCategoryAndProductId,
      };
   }
   

@@ -7,6 +7,7 @@ if (typeof module !== 'undefined' && module.exports) { // check we're server-sid
   var login = methods.login;
   var genrateRandomEmail = methods.genrateRandomEmail;
   var logout = methods.logout;
+  var getCategoryAndProductId = methods.getCategoryAndProductId;
 }
 
 //sprint 1 
@@ -138,7 +139,19 @@ QUnit.test( 'logout() should return "success"', assert => {
   });
 });
 
+//used for checking out. Length = 4
+test('getCategoryAndProductId(1000) should return ["Clothes",0]', function(assert){
+  var result = getCategoryAndProductId(1000);
+  var expected = ["Clothes",0];
+  assert.deepEqual(result, expected);
+});
 
+//used for checking out. Length = 5
+test('getCategoryAndProductId(20010) should return ["Food",10]', function(assert){
+  var result = getCategoryAndProductId(20010);
+  var expected = ["Food",10];
+  assert.deepEqual(result, expected);
+});
 
 
 // login - valid email and password given
