@@ -14,7 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.auth.Auth.Persistence.LOCAL;
 
-function register(fName, lName, dob, email, password, cPassword, exit, setError){
+function register(fName, lName, dob, email, password, cPassword, exit){
    return new Promise( resolve => {
     var returnMesage = "";
     if (password != "" && cPassword != ""){
@@ -24,10 +24,7 @@ function register(fName, lName, dob, email, password, cPassword, exit, setError)
               var user = userCredential.user.uid; 
               var rootRef = firebase.database().ref(); 
               // console.log(rootRef)
-              var usersRef = rootRef.child("users").child(user).child("details");
-              if (setError){
-                usersRef = null;
-              }
+              var usersRef = rootRef.child("users").child(user).child("details");   
               var userData = 
               {
                 firstName: fName,
@@ -36,8 +33,9 @@ function register(fName, lName, dob, email, password, cPassword, exit, setError)
                 email: email,
                 availableMoney: 100000
               };
-              usersRef.set(userData, function(error){
+              usersRef.set(userData, function(error){     
                 if(error){
+                  console.log("error mes "+error.message)
                   if (isWebsite()) {
                     window.alert("Message : " + error.message);
                   }

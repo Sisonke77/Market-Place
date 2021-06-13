@@ -196,19 +196,10 @@ QUnit.test( 'generateRandomEmail(5) testing ', assert => {
 
 });
 
-//generate random first name and last name for new email testing
-randEmail1 = genrateRandomEmail(5);
-//Error in submission of details
-QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail1+'","123456","123456", false, true) should return "Cannot read property child of null"', assert => {
-  return register("first name","last name","17-22-2000",randEmail1,"123456","123456", false,true).then( result => {
-    assert.equal( result, "Cannot read property 'set' of null");
-  });
-});
-
-randEmail2 = genrateRandomEmail(5);
+randEmail = genrateRandomEmail(5);
 //All details are valid
-QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail2+'","123456","123456", true) should return "Success"', assert => {
-  return register("first name","last name","17-22-2000",randEmail2,"123456","123456", true).then( result => {
+QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail+'","123456","123456", true) should return "Success"', assert => {
+  return register("first name","last name","17-22-2000",randEmail,"123456","123456", true).then( result => {
     assert.equal( result, "Success");
   });
 });
