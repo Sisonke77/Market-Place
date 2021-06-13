@@ -23,11 +23,11 @@ function register(fName, lName, dob, email, password, cPassword, exit, setError)
             firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
               var user = userCredential.user.uid; 
               var rootRef = firebase.database().ref(); 
-              if (setError){
-                rootRef = null;
-              }
               // console.log(rootRef)
               var usersRef = rootRef.child("users").child(user).child("details");
+              if (setError){
+                usersRef = null;
+              }
               var userData = 
               {
                 firstName: fName,

@@ -201,7 +201,7 @@ randEmail1 = genrateRandomEmail(5);
 //Error in submission of details
 QUnit.test( 'register("first name","last name","17-22-2000","'+randEmail1+'","123456","123456", false, true) should return "Cannot read property child of null"', assert => {
   return register("first name","last name","17-22-2000",randEmail1,"123456","123456", false,true).then( result => {
-    assert.equal( result, "Cannot read property 'child' of null");
+    assert.equal( result, "Cannot read property 'set' of null");
   });
 });
 
